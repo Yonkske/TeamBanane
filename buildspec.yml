@@ -1,18 +1,24 @@
 version: 0.2
 
 phases:
-
+  pre_build:
+    commands:
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)"
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build .
+      - docker build --tag "${REPOSITORY}:${TAG}" .
      #- docker tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       
   post_build:
     commands:
+      - docker push "${REPOSITORY}:${TAG}"  
       - printf '[{"name":"build-and-run","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
-
+      - printf '{"Image":"%s:%s"}' $REPOSITORY $TAG > build.json
 artifacts:
-  files: imagedefinitions.json
-      
+  files: 
+    - imagedefinitions.json
+    - build.json
+    
