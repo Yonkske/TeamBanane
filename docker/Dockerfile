@@ -1,1 +1,3 @@
-ECHO Hello
+FROM alpine:latest
+
+RUN echo "Hello World"
