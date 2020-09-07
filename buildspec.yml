@@ -3,7 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - $(aws ecr get-login)
       - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)"
   build:
     commands:
