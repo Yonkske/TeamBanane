@@ -9,12 +9,15 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build --tag "${REPOSITORY}:${TAG}" .
+      - docker build -t banana .
+      #- docker build -t "${REPOSITORY}:${TAG}" .
      #- docker tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       
   post_build:
     commands:
-      - docker push "${REPOSITORY}:${TAG}"  
+      - docker tag banana:latest 904356693277.dkr.ecr.eu-central-1.amazonaws.com/banana:latest  
+      - docker push 904356693277.dkr.ecr.eu-central-1.amazonaws.com/banana:latest
+      # - docker push "${REPOSITORY}:${TAG}"  
       - printf '[{"name":"build-and-run","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
       - printf '{"Image":"%s:%s"}' $REPOSITORY $TAG > build.json
 artifacts:
