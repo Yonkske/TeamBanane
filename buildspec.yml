@@ -3,14 +3,13 @@ version: 0.2
 phases:
   pre_build:
     commands:
-     # - $(aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 904356693277.dkr.ecr.eu-central-1.amazonaws.com)
       - $(aws ecr get-login --no-include-email --region eu-central-1)
       - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)"
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build --tag "${REPOSITORY}:${TAG}" .
+      - docker build --tag "${REPOSITORY}:latest" .
      #- docker tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       
   post_build:
