@@ -75,6 +75,23 @@ body {
   to {opacity:1 ;}
 }
 
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 
     </style>
 
@@ -85,6 +102,7 @@ body {
       popup.classList.toggle("show");
     }
     </script>
+
 
 
 </head>
@@ -99,8 +117,11 @@ body {
 
     <div class="popup" onclick="myFunction()" id="click">Klicken Sie hier und gewinnen Sie 1 Geld.
         <span class="popuptext" id="myPopup">Follow me on YT, Shitstagram and SchülerVZ.</span>
-      </div> 
+    </div> 
 
+    <div class="tooltip">Hover over me
+      <span class="tooltiptext">Shows after hover</span>
+    </div>
 
 </body>
 </html>
