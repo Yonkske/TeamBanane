@@ -15,8 +15,8 @@ phases:
       
   post_build:
     commands:
-      - docker tag banana:latest 904356693277.dkr.ecr.eu-central-1.amazonaws.com/banana:latest  
-      - docker push 904356693277.dkr.ecr.eu-central-1.amazonaws.com/banana:latest
+      - docker tag banana:latest 904356693277.dkr.ecr.eu-central-1.amazonaws.com/faultybanana:latest  
+      - docker push 904356693277.dkr.ecr.eu-central-1.amazonaws.com/faultybanana:latest
       # - docker push "${REPOSITORY}:${TAG}"  
       - printf '[{"name":"build-and-run","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
       - printf '{"Image":"%s:%s"}' $REPOSITORY $TAG > build.json
