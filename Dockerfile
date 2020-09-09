@@ -1,8 +1,5 @@
-FROM alpine:latest
+FROM httpd:2.4
 
 EXPOSE 80
 EXPOSE 443
-
-RUN echo "Hello World"
-
-ENTRYPOINT /bin/bash
+COPY ./index.html /usr/local/apache2/htdocs/  
