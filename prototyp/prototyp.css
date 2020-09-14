@@ -33,3 +33,15 @@ h1{
     border-radius: 4px;
     margin: 3px;
 }
+
+.task:hover {
+    background-color: cyan;
+}
+.newTask{
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: lightcyan;
+    border: 2px solid darkcyan;
+    border-radius: 4px;
+    margin: 3px;
+}
