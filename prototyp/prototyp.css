@@ -1,0 +1,35 @@
+body{
+    background-color: cornflowerblue;
+}
+
+h1{
+    color: black;
+    font-size: 48px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.column{
+    border: 3px solid darkblue;
+    border-radius: 5px;
+    background-color: lightblue;
+    height: 50%;
+    float: left;
+    width: 250px;
+    margin: 10px;
+}
+
+.column-head{
+    font-size: 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.task{
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: lightcyan;
+    border: 2px solid darkcyan;
+    border-radius: 4px;
+    margin: 3px;
+}
