@@ -17,7 +17,8 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    border-radius: 5px;
+    background-color: rgb(160, 114, 83);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
@@ -71,17 +72,25 @@
 
 .task-card {
     text-align: left;
+    border-radius: 4px;
     font-family: 'Roboto Slab', serif;
     background-color: #be6e2b;
     color: rgb(59, 24, 0);
     margin: 2%;
 }
 
+.task-card:hover {
+    transition-duration: 0,1s;
+    border: #be6e2b solid;
+}
+
 .task-description {
     display: none;
+    border: solid whitesmoke;
     position: absolute;
     color: whitesmoke;
-    background-color: rgba(59, 24, 0, 0.596);
+    border-radius: 5px;
+    background-color: rgba(59, 24, 0, 0.815);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
@@ -94,10 +103,9 @@
 
 .new-task-card {
     border: none;
-    font-family: 'Roboto Slab', serif;
-    background-color: #be6e2b;
-    color: rgb(59, 24, 0);
     width: 100%;
+    font-family: 'Roboto Slab', serif;
+    background-color: #ffffff00;
 }
 
 .new-task-card::placeholder {
