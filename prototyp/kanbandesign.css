@@ -77,6 +77,21 @@
     margin: 2%;
 }
 
+.task-description {
+    display: none;
+    position: absolute;
+    color: whitesmoke;
+    background-color: rgba(59, 24, 0, 0.596);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.task-card:hover .task-description {
+    display: block;
+}
+
 .new-task-card {
     border: none;
     font-family: 'Roboto Slab', serif;
