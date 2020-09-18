@@ -1,131 +1,117 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <title>Banane | Kanban amk</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="design.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+  </head>
 
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Hello World</title>
+  <body>
 
-    <style>
+    <!-- HEADER --------------------------------->
 
+    <header>
+      <div id="logo">
+        <a href="#home">
+            <h1>Banane</h1>
+        </a>
+      </div>
 
+      <nav id="main-nav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#login">Login</a></li>
+          <li><a href="#registration">Registration</a></li>
+          <li><a href="#team">Our Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-/* Popup container */
-body {
-    background-color:red;
-}
+    <!-- HOME --------------------------------->
 
-.font{
-    font-family: Helvetica, cursive;
-    font-size: 2em;
-    color:crimson
-}
+    <section id="home">
+      <hr>
+      <h1>Kanban Board</h1>
+      <h2>Organize Your Projects</h2>
+      <a href="#login">
+        <img src="img/pfeil.png" alt="Pfeil">
+      </a>
+    </section>
 
-.popup {
-    margin-left: 2cm;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
+    <!-- LOGIN --------------------------------->
 
-/* The actual popup (appears on top) */
-.popup .popuptext {
-  visibility: hidden;
-  width: 160px;
-  background-color:aqua;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
-}
+    <section id="login">
+      <h3>Login</h3>
+      <hr>
+      <form >
 
-/* Popup arrow */
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
+            <input class="input_text" type="text" tabindex="1" placeholder="username"><br>            
+            <input class="input_text" type="password" tabindex="2" placeholder="password"><br>
+            <input class="button" type="submit" ><br>
+            <a href=#registration>
+                <img src="img/pfeil.png" alt="Pfeil">
+              </a>
+        </form>
+    
+    </section>
 
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
-.popup .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s
-}
+      <!-- Registrieren --------------------------------->
 
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
+      <section id="registration">
+        <h3>Registration</h3>
+        <hr>
+        <form >
+  
+              <input class="input_text" type="text" tabindex="1" placeholder="username"><br>            
+              <input class="input_text" type="password" tabindex="2" placeholder="password"><br>
+              <input class="button" type="submit" ><br>
+              <a href=kanban.html>
+                <img src="img/pfeil.png" alt="Pfeil">
+              </a>
+          </form>
+      
+      </section>
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:1 ;}
-}
+    <!-- Team --------------------------------->
 
-/* Formatting for the hoverbox */
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: rgb(201, 154, 100);
-  color: black;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
+    <section id="team">
+      <h3>Our Team</h3>
+      <hr>
+      <ul>
+        <li><a href=https://www.instagram.com/janpiiiee/ ><img src="img/albrecht.PNG" alt="Albrecht"></a></li><br><br>
+        <h2>Jan Albrecht, W&W Informatik GmbH</h2><br><br>
+        <li><a href= https://www.instagram.com/simon.froehner/ ><img src="img/froehner.PNG" alt="Froehner"></a></li><br><br>
+        <h2>Simon Fröhner, Finanz Informatik Solutions Plus GmbH</h2><br><br>
+        <li><a href=https://www.instagram.com/tabascoel/ ><img src="img/tabyrca.PNG" alt="Tabyrca"></a></li>
+        <h2>Ion Tabyrca, Sopra Banking Software GmbH</h2><br><br>
+      </ul>
+      <hr>
 
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-}
+    </section>
 
-/* Shows the hoverbox */
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  -webkit-animation: fadeIn 0.5s;
-  animation: fadeIn 0.5s
-}
+    <!-- CONTACT --------------------------------->
 
-    </style>
+    <section id="contact">
+      <h3>Contact</h3>
+      <hr>
 
-<script>
-    // When the user clicks on <div>, open the popup
-    function myFunction() {
-      var popup = document.getElementById("myPopup");
-      popup.classList.toggle("show");
-    }
-    </script>
+      <form>
+        <input class="input_text" type="email" tabindex="1" placeholder="E-Mail"><br>
+        <input class="input_text" type="text" tabindex="2" placeholder="Betreff"><br>
+        <textarea class="input_text" tabindex="3" placeholder="Nachricht"></textarea><br>
+        <input class="button" type="submit" >
+      </form>
+    </section>
 
+    <!-- FOOTER --------------------------------->
 
-
-</head>
-<body>
-    <h1 class="font">Jan</h1>
-    <p class="font">Arbeitgeber:   Wüstenrot & Württembergische Informatik GmbH  </p>
-    <p class="font">Auf dieser Welt seit: 8943 Tagen</p>
-
-    <p class="font">Kenntnisse und bekannte Technologien (wilde Auflistung): HTML, CSS, PHP, Bootstrap, AngularJS, TypeScript, SAP (grundlegend), Docker, Git, Java, Maven, DevOps (vieles Rund um Ci/CD und Middleware), Linux, ksh, Assembler, alles was ich vergessen habe</p>
-
-<p>Hello my Name is Jan. And i like things  </p>
-
-    <div class="popup" onclick="myFunction()" id="click">Klicken Sie hier und gewinnen Sie 1 Geld.
-        <span class="popuptext" id="myPopup">Follow me on YT, Shitstagram and SchülerVZ.</span>
-    </div> 
-
-    <div class="tooltip">Hover over me
-      <span class="tooltiptext">Shows after hover</span>
-    </div>
-
-</body>
+    <footer>
+      <p>
+        &copy; 2020 DHBW Stuttgart 
+      </p>
+    </footer>
+  </body>
 </html>
