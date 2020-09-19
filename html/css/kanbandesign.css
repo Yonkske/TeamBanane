@@ -2,7 +2,7 @@
 /* General ****************/
 
 #kanban {
-    background: url(img/banana.jpg);
+    background: url(../../img/banana.jpg);
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
@@ -55,6 +55,8 @@
 
 .new-column-input{
     font-size: 25px;
+    text-align: center;
+    color: whitesmoke;
     height: 4%;
     width: 100%;
     border: none;
