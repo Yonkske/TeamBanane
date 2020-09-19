@@ -26,7 +26,7 @@ document.addEventListener("dragover", function(event) {
 // On entering the dropzone
 document.addEventListener("dragenter", function(event) {
     // highlight target
-    if(event.target.className == "column dropzone") {
+    if(event.target.className == "column dropzone" && event.target != dragged.parentNode) {
         event.target.style.background = "rgb(160, 114, 83)";
     }
 }, false);
