@@ -81,9 +81,11 @@ let el;
 function dragOver(event) {
     if (isBefore(el, event.target)){
         event.target.parentNode.insertBefore(el, event.target);
+        event.target.parentNode.style.background = "rgb(160, 114, 83)";
     }
     else {
         event.target.parentNode.insertBefore(el, event.target.nextSibling);
+        event.target.parentNode.style.background = "rgb(160, 114, 83)";
     }
 };
 
