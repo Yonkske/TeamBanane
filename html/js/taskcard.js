@@ -10,10 +10,12 @@ document.addEventListener("drag", function(event) {
 // On drag start
 document.addEventListener("dragstart", function(event) {
     // referenece the dragged element on drag start
-    dragged = event.target;
+    if(event.target.className == "handle") {
+        dragged = event.target.parentNode;
+    }
 
     // For making it sortable
-    if(event.target.className == "task-card") {
+    if(event.target.className == "handle") {
         dragStart(event);
     }
 }, false);
@@ -107,5 +109,13 @@ function isBefore(el1, el2) {
 };
 
 // Functions to create a new task-card
+
+function openCreateNewTask() {
+    document.getElementById("newCardForm").style.display = "block";
+}
+
+function closeCreateNewTask() {
+    document.getElementById("newCardForm").style.display = "none";
+}
 
 // Functions to edit task-description
