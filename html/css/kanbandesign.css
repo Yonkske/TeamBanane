@@ -211,7 +211,7 @@
 
 .new-card button {
     margin-top: 2%;
-    background: url("../../node_modules/bootstrap-icons/icons/plus.svg");
+    background: url("../../img/plus.svg");
     background-color:  #be6e2b;
     height: 15px;
     width: 15px;
