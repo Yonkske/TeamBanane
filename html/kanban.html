@@ -92,10 +92,17 @@
             
             <label for="editorInput">Editor:</label>
             <input type="text" id="editorInput" name="editorInput" placeholder="Enter editor here..">
-
             
             <label for="dateInput">Due date:</label>
             <input type="date" id="dateInput" name="dateInput" placeholder="Enter editor here..">
+
+            <label for="prioInput">Priority:</label>
+            <select name="prioInput" id="prioInput">
+                <option value="low" id="low">low</option>
+                <option value="medium" id="medium">medium</option>
+                <option value="high" id="high">high</option>
+            </select>
+
             <div>
                 <button type="submit">Create Task</button>
                 <button onclick="closeCreateNewTask()">Cancel</button>

@@ -265,7 +265,22 @@ label {
 #dateInput {
     margin: 2%;
     width: 96%;
+}
 
+#prioInput {
+    margin: 2%;
+    width: 96%;
+    text-align: center;
+}
+
+#low {
+    background-color: green;
+}
+#medium {
+    background-color: orange;
+}
+#high {
+    background-color: red;
 }
 
 .popup-format button {
