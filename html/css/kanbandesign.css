@@ -86,6 +86,32 @@
     border: #be6e2b solid;
 }
 
+.new-task-card {
+    border: none;
+    width: 100%;
+    font-family: 'Roboto Slab', serif;
+    background-color: #ffffff00;
+}
+
+.new-task-card::placeholder {
+    font-family: 'Roboto Slab', serif;
+    color: rgb(59, 24, 0);
+    width: 100%;
+}
+
+/* Textarea on the task-car ****/
+
+.task-text {
+    background-color: inherit;
+    margin: 0%;
+    resize: none;
+    border: none;
+    font-family: 'Roboto Slab', serif;
+    color: rgb(59, 24, 0);
+}
+
+/* Task-Description ***********/
+
 .task-description {
     display: none;
     border: solid whitesmoke;
@@ -98,20 +124,20 @@
     padding: 12px 16px;
     z-index: 1;
 }
-
+                    
 .task-card:hover .task-description {
     display: block;
 }
 
-.new-task-card {
-    border: none;
-    width: 100%;
-    font-family: 'Roboto Slab', serif;
-    background-color: #ffffff00;
+.task-card:onClick .task-description {
+    display: block;
 }
 
-.new-task-card::placeholder {
+.desc-text{
+    background-color: inherit;
+    margin: 0%;
+    resize: none;
+    border: none;
     font-family: 'Roboto Slab', serif;
-    color: rgb(59, 24, 0);
-    width: 100%;
+    color: whitesmoke;
 }

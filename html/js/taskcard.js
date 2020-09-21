@@ -91,13 +91,13 @@ function dragOver(event) {
 
 function dragStart(event) {
     event.dataTransfer.effectAllowed = "move";
-    event.dataTransfer.setData("text/plain", null); // Thanks to bqlou for their comment.
+    event.dataTransfer.setData("text/plain", null);
     el = event.target;
 };
 
 function isBefore(el1, el2) {
     if (el2.parentNode === el1.parentNode) {
-        for (var cur = el1.previousSibling; cur && cur.nodeType !== 9; cur = cur.previousSibling) {
+        for (let cur = el1.previousSibling; cur && cur.nodeType !== 9; cur = cur.previousSibling) {
             if (cur === el2) {
                 return true;
             }
@@ -105,3 +105,7 @@ function isBefore(el1, el2) {
     }
   return false;
 };
+
+// Functions to create a new task-card
+
+// Functions to edit task-description
