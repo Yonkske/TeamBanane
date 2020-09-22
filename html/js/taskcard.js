@@ -1,6 +1,6 @@
 // Dragdrop Tasks
 // Compare to "https://developer.mozilla.org/en-US/docs/Web/API/Document/drag_event"
-
+{ // Hide
 let dragged;
 
 document.addEventListener("drag", function(event) {
@@ -10,10 +10,12 @@ document.addEventListener("drag", function(event) {
 // On drag start
 document.addEventListener("dragstart", function(event) {
     // referenece the dragged element on drag start
-    dragged = event.target;
+    if(event.target.className == "handle") {
+        dragged = event.target.parentNode;
+    }
 
     // For making it sortable
-    if(event.target.className == "task-card") {
+    if(event.target.className == "handle") {
         dragStart(event);
     }
 }, false);
@@ -72,10 +74,10 @@ document.addEventListener("drop", function(event) {
     }
 
 }, false);
-
+}
 // Functions to make the task-cards orderable
 // Compare to https://stackoverflow.com/questions/10588607/tutorial-for-html5-dragdrop-sortable-list
-
+{ // Hide
 let el;
 
 function dragOver(event) {
@@ -105,7 +107,39 @@ function isBefore(el1, el2) {
     }
   return false;
 };
-
+}
 // Functions to create a new task-card
+{ // HIde
+function openCreateNewTask() {
+    document.getElementById("newCardForm").style.display = "block";
+    createNewTask();
+}
 
+function closeCreateNewTask() {
+    document.getElementById("newCardForm").style.display = "none";
+}
+
+// Compare to https://stackoverflow.com/questions/7410063/how-can-i-listen-to-the-form-submit-event-in-javascript
+function createNewTask(){
+    let crTask = document.getElementById("newTask");
+    crTask.onsubmit = submitted.bind(crTask);
+    console.log(crTask);
+}
+
+function submitted(event) {
+    event.preventDefault();
+    console.log("submitted");
+    closeCreateNewTask();
+}
+}
 // Functions to edit task-description
+{ // Hide
+function openEditNewTask() {
+    document.getElementById("editCardForm").style.display = "block";
+    createNewTask();
+}
+
+function closeEditNewTask() {
+    document.getElementById("editCardForm").style.display = "none";
+}
+}

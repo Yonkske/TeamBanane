@@ -33,7 +33,6 @@
 
 .column{
     font-family: 'Roboto Slab', serif;
-    color: #494949;
     background-color: rgb(59, 24, 0);
     float: left;
     width: 250px;
@@ -41,6 +40,8 @@
     margin: 1%;
     margin-top: 4%;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 .task-list {
@@ -99,7 +100,7 @@
     width: 100%;
 }
 
-/* Textarea on the task-car ****/
+/* Textarea on the task-card ****/
 
 .task-text {
     background-color: inherit;
@@ -140,4 +141,151 @@
     border: none;
     font-family: 'Roboto Slab', serif;
     color: whitesmoke;
+}
+
+
+/* Task-Card Overhaul **********/
+
+.card {
+    min-height: 21px;
+    background-color: #be6e2b;
+    border-radius: 4px;
+    margin: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card:hover {
+    border: darkgray solid;
+}
+
+.card:hover .task-description {
+    display: block;
+    margin-top: 3%;
+}
+
+.handle {
+    min-height: inherit;
+    min-width: 15px;
+    width: auto;
+    background-color: green;
+    border-bottom-left-radius : 4px;
+    border-top-left-radius : 4px;
+    float: left;
+}
+
+.content {
+    text-align: center;
+    min-height: inherit;
+    font-family: 'Roboto Slab', serif;
+    color: rgb(59, 24, 0);
+    margin: 2%;
+}
+
+.content h5 {
+    font-family: 'Roboto Slab', serif, bold;
+    font-size: 15px;
+    color: rgb(59, 24, 0);
+    margin: 4%;
+}
+
+.content p {
+    margin: 2%;
+    font-family: 'Roboto Slab', serif;
+    color: rgb(59, 24, 0);
+}
+
+.edit {
+    vertical-align: center;
+    background: transparent;
+    border: none;
+    color: inherit;
+}
+
+/* New-Card Overhaul ***********/
+
+:not(.new-card) {
+    order: -1;
+}
+
+.new-card button {
+    margin-top: 2%;
+    background: url("../../img/plus.svg");
+    background-color:  #be6e2b;
+    height: 15px;
+    width: 15px;
+    border-radius: 15px;
+    border: none;
+}
+
+/* New-Card Form ***************/
+
+label {
+    text-align: left;
+}
+
+.new-task-popup {
+    width: 25%;
+    border: black solid 4px;
+    border-radius: 10px;
+    background-color: darkgray;
+    position: fixed;
+    top: 20%; left: 20%;
+    display: none;
+}
+
+.popup-format {
+    font-family: 'Roboto Slab', serif;
+    color: rgb(59, 24, 0);
+}
+
+.popup-format h3 {
+    font-family: 'Roboto Slab', serif, bold;
+    color: rgb(59, 24, 0);
+    margin: 2%;
+}
+
+#nameInput {
+    margin: 2%;
+    width: 96%;
+}
+
+#descInput {
+    margin: 2%;
+    width: 96%;
+    height: 50px;
+}
+
+#editorInput {
+    margin: 2%;
+    width: 96%;
+}
+
+#dateInput {
+    margin: 2%;
+    width: 96%;
+}
+
+#prioInput {
+    margin: 2%;
+    width: 96%;
+    text-align: center;
+}
+
+#low {
+    background-color: green;
+}
+#medium {
+    background-color: orange;
+}
+#high {
+    background-color: red;
+}
+
+.popup-format button {
+    font-family: inherit;
+    color: inherit;
+    border-radius: 4px;
+    border: none;
 }
