@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 var dotenv = require('dotenv');
 
-dotenv.config({path: '../../.env'});
+dotenv.config();
 
 const dbCreds = {
     urlStart: process.env.URL_FIRST,
