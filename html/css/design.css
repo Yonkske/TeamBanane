@@ -60,7 +60,7 @@ header nav ul li:hover {
 /* HOME ******************************/
 
 #home {
-  background: url(img/banana.jpg);
+  background: url(../../img/banana.jpg);
   background-position: center center;
   background-size: cover;
   background-attachment: fixed;
@@ -119,7 +119,7 @@ header nav ul li:hover {
   
 }
 #registration {
-    background: url(img/banana.jpg);
+    background: url(../../img/banana.jpg);
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;   
@@ -160,7 +160,7 @@ header nav ul li:hover {
 /* CONTACT ******************************/
 
 #contact{
-    background: url(img/banana.jpg);
+    background: url(../../img/banana.jpg);
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;  

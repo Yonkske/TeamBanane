@@ -1,0 +1,164 @@
+<!DOCTYPE html5>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banane | KanbanBoard</title>
+
+    
+    <link rel="stylesheet" type="text/css" href="css/design.css">
+    <link rel="stylesheet" type="text/css" href="css/kanbandesign.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- HEADER --------------------------------->
+
+    <header>
+        <div id="logo">
+            <a href="#home">
+                <h1>Banane</h1>
+            </a>
+        </div>
+      
+        <nav id="main-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a class="dropdown">
+                    <span>Your projects</span>
+                        <div class="dropdown-content">
+                            <p href="project1">Project 1</p>
+                            <p href="project2">Project 2</p>
+                            <p href="project3">Project 3</p>
+                        </div>
+                    </a>
+                </li>
+                <li><a href="../index.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<section id="kanban">   
+    <!-- KANBAN-COLUMNS -------------------------->
+
+    <div class="column dropzone">
+        <h2>Column 1</h2>
+        <div class="new-card"><button class="new-card-button" onclick="openCreateNewTask()"></button></div>
+        <div class="card">
+            <div class ="handle" draggable="true"></div>
+            <div class="content">
+                <h5>Task 1</h5>
+                <p>Ion</p>
+                <p>01.10.2020</p>
+            </div>
+            <button class="edit" onclick="openEditNewTask()">
+                <img src="../img/pencil-square.svg">
+            </button>   
+            <p class="task-description">This is the desription for the task</p> 
+        </div>
+    </div>
+    <div class="column dropzone">
+        <h2>Column 2</h2>
+        <div class="new-card"><button class="new-card-button" onclick="openCreateNewTask()"></button></div>
+        <div class="card">
+            <div class ="handle" draggable="true"></div>
+            <div class="content">
+                <h5>Task 1 with some text for testing</h5>
+                <p>Simon</p>
+                <p>22.09.2020</p>
+            </div>
+            <button class="edit" onclick="openEditNewTask()">
+                <img src="../img/pencil-square.svg">
+            </button>   
+            <p class="task-description">Whoever reads this is dumb!</p> 
+        </div>
+    </div>
+    <div class="column dropzone">
+        <h2>Column 3</h2>
+        <div class="new-card"><button class="new-card-button" onclick="openCreateNewTask()"></button></div>
+        <div class="card">
+            <div class ="handle" draggable="true"></div>
+            <div class="content">
+                <h5>Another task for testing</h5>
+                <p>Jan</p>
+                <p>30.09.2020</p>
+            </div>
+            <button class="edit" onclick="openEditNewTask()">
+                <img src="../img/pencil-square.svg">
+            </button>   
+            <p class="task-description">You just got trolled</p> 
+        </div>
+    </div>
+    <div class="column new-column">
+        <h2><input class="new-column-input" type="text" placeholder="New task column"></h2>
+    </div>
+
+</section>
+
+<div class="new-task-popup" id="newCardForm">
+    <div class="popup-format">
+        <h3>Create a new Task</h3>
+        <form id="newTask">
+            <label for="nameInput">Task name:</label>
+            <input type="text" id="nameInput" name="nameInput" placeholder="Enter name here..">
+            
+            <label for="descInput">Task description:</label>
+            <input type="text" id="descInput" name="descInput" placeholder="Enter discription here..">
+            
+            <label for="editorInput">Editor:</label>
+            <input type="text" id="editorInput" name="editorInput" placeholder="Enter editor here..">
+            
+            <label for="dateInput">Due date:</label>
+            <input type="date" id="dateInput" name="dateInput" placeholder="Enter editor here..">
+
+            <label for="prioInput">Priority:</label>
+            <select name="prioInput" id="prioInput">
+                <option value="low" id="low">low</option>
+                <option value="medium" id="medium">medium</option>
+                <option value="high" id="high">high</option>
+            </select>
+
+            <div>
+                <button type="submit">Create Task</button>
+                <button onclick="closeCreateNewTask()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="new-task-popup" id="editCardForm">
+    <div class="popup-format">
+        <h3>Edit task</h3>
+        <form id="editTask">
+            <label for="nameInput">Task name:</label>
+            <input type="text" id="nameInput" name="nameInput" placeholder="Enter name here..">
+            
+            <label for="descInput">Task description:</label>
+            <input type="text" id="descInput" name="descInput" placeholder="Enter discription here..">
+            
+            <label for="editorInput">Editor:</label>
+            <input type="text" id="editorInput" name="editorInput" placeholder="Enter editor here..">
+            
+            <label for="dateInput">Due date:</label>
+            <input type="date" id="dateInput" name="dateInput" placeholder="Enter editor here..">
+
+            <label for="prioInput">Priority:</label>
+            <select name="prioInput" id="prioInput">
+                <option value="low" id="low">low</option>
+                <option value="medium" id="medium">medium</option>
+                <option value="high" id="high">high</option>
+            </select>
+
+            <div>
+                <button type="submit">Create Task</button>
+                <button onclick="closeCreateNewTask()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!----- Adding the necessary scripts ----->
+<script src="js/taskcard.js"></script>
+</body>
+</html>
