@@ -2,7 +2,7 @@
 /* General ****************/
 
 #kanban {
-    background: url(../../img/banana.jpg);
+    background: url(../img/banana.jpg);
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
@@ -211,7 +211,7 @@
 
 .new-card button {
     margin-top: 2%;
-    background: url("../../img/plus.svg");
+    background: url("../img/plus.svg");
     background-color:  #be6e2b;
     height: 15px;
     width: 15px;
