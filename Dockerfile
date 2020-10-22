@@ -6,6 +6,5 @@ EXPOSE 443
 WORKDIR teambanane
 COPY . /teambanane/
 
-
 RUN npm install
-CMD node server.js
+CMD ["node", "server.js"]
