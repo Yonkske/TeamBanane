@@ -37,7 +37,22 @@ const User = mongoose.model("User", userSchema);
 app.post("/register", async (req, res) => {
 
     console.log(req.body.username);
-    const  [ rows ] = await User.create({username: req.body.username, password: req.body.password})
+
+
+    const User = mongoose.model('User', userSchema);
+
+    const small = new User({ username: req.body.username,
+    password: req.body.password,
+    projects: ['first']});
+
+    small.save(function (err) {
+        if (err) return console.log(err);
+
+    });
+
+
+
+
     res.status(200).send();
 })
 
