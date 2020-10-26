@@ -54,6 +54,20 @@ app.post("/register", async (req, res) => {
 })
 
 
+app.get("/register", async (req, res) => {
+
+    let foundUser = User.findOne({username: req.body.username}).exec();
+    res.json(foundUser);
+
+})
+
+
+
+
+
+
+
+
 // Task cards functionality
 // Defining the schema for a task
 const taskSchema = mongoose.Schema({

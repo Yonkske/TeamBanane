@@ -19,3 +19,15 @@ registrationForm.addEventListener("submit", (e) => {
 
     console.log("FORM SUBMITTED", values);
 });
+
+
+const loginForm = document.querySelector("#loginForm");
+
+loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    fetch("/register", {
+
+
+    });
+
+});
