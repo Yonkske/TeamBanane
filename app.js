@@ -9,4 +9,8 @@ dotenv.config();
 // Expose files stored in html-folder to public
 app.use(express.static("html"));
 
-app.listen(5500);
+app.get("/login", ((req, res) => {
+    res.json({hello: "world"})
+}))
+
+app.listen(80);
