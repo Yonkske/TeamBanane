@@ -36,21 +36,23 @@ const User = mongoose.model("User", userSchema);
 
 app.post("/register", async (req, res) => {
 
-    console.log(req.body.username);
+    if(await User.findOne({username: req.body.username}).exec() === null) {
+        const newUser = new User({
+            username: req.body.username,
+            password: req.body.password,
+            projects: ['first']
+        });
 
-    const newUser = new User({
-        username: req.body.username,
-        password: req.body.password,
-        projects: ['first']
-    });
-
-    newUser.save(function (err) {
-        if (err) {
-            res.status(500).send();
-        } else {
-            res.status(200).send();
-        }
-    });
+        newUser.save(function (err) {
+            if (err) {
+                res.status(500).send();
+            } else {
+                res.status(200).send();
+            }
+        });
+    } else {
+        res.status(420).send();
+    }
 })
 
 
