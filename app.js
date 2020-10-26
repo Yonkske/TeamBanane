@@ -15,13 +15,14 @@ const dbCreds = {
     urlStart: process.env.URL_FIRST,
     user: process.env.MONGODB_USER,
     password: process.env.MONGODB_PW,
-    urlEnd: process.env.URL_END,
-    dbName: process.env.DB_NAME
+    urlMiddle: process.env.URL_MIDDLE,
+    dbName: process.env.DB_NAME,
+    urlEnd: process.env.URL_END
 };
 
 // The url of the database
-const url = dbCreds.urlStart + dbCreds.user + ":" + dbCreds.password + dbCreds.urlEnd;
-const connection = mongoose.createConnection(url, {useNewUrlParser: true, useUnifiedTopology: true});
+const url = dbCreds.urlStart + dbCreds.user + ":" + dbCreds.password + dbCreds.urlMiddle + dbCreds.dbName + dbCreds.urlEnd;
+mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
 
 // Login functionality+
 // Defining the schema for a user
@@ -33,29 +34,24 @@ const userSchema = mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 
-
 app.post("/register", async (req, res) => {
 
     console.log(req.body.username);
 
-
-    const User = mongoose.model('User', userSchema);
-
-    const small = new User({ username: req.body.username,
-    password: req.body.password,
-    projects: ['first']});
-
-    small.save(function (err) {
-        if (err) return console.log(err);
-
+    const newUser = new User({
+        username: req.body.username,
+        password: req.body.password,
+        projects: ['first']
     });
 
-
-
-
-    res.status(200).send();
+    newUser.save(function (err) {
+        if (err) {
+            res.status(500).send();
+        } else {
+            res.status(200).send();
+        }
+    });
 })
-
 
 
 // Task cards functionality
