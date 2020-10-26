@@ -1,0 +1,10 @@
+#Task
+
+project, column(X), position(Y), taskname, description, editorname, duedate, prio
+
+
+
+
+#User
+
+username, password, projects 
