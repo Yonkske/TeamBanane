@@ -83,7 +83,7 @@
 }
 
 .task-card:hover {
-    transition-duration: 0, 1s;
+    transition-duration: 0.1s;
     border: #be6e2b solid;
 }
 
@@ -247,42 +247,42 @@ label {
     margin: 2%;
 }
 
-#nameInput {
+.nameInput {
     margin: 2%;
     width: 96%;
 }
 
-#descInput {
+.descInput {
     margin: 2%;
     width: 96%;
     height: 50px;
 }
 
-#editorInput {
+.editorInput {
     margin: 2%;
     width: 96%;
 }
 
-#dateInput {
+.dateInput {
     margin: 2%;
     width: 96%;
 }
 
-#prioInput {
+.prioInput {
     margin: 2%;
     width: 96%;
     text-align: center;
 }
 
-#low {
+.low {
     background-color: green;
 }
 
-#medium {
+.medium {
     background-color: orange;
 }
 
-#high {
+.high {
     background-color: red;
 }
 

@@ -130,6 +130,27 @@
         console.log("submitted");
         closeCreateNewTask();
     }
+
+    const newTaskForm = document.querySelector("#newTask");
+
+    newTaskForm.addEventListener("submit", (e) => {
+        const values = Object.fromEntries(new FormData(e.target));
+
+        fetch("/taskcard", {
+            method: "POST",
+            body: JSON.stringify(values),
+            headers: {
+                "content-type": "application/json",
+            }
+        }).then((res) => {
+            console.log(res.ok);
+            if(res.ok) {
+                document.querySelector("#to-do").appendChild(generateTaskCard("test", "Simon", "11.11.2022"));
+            }
+        });
+
+        console.log("FORM SUBMITTED", values);
+    })
 }
 // Functions to edit task-description
 { // Hide
@@ -141,4 +162,52 @@
     function closeEditNewTask() {
         document.getElementById("editCardForm").style.display = "none";
     }
+}
+
+// function to generate the dom element for a task card
+function generateTaskCard(taskname, editorname, duedate) {
+    // Creates the whole card division
+    let card = document.createElement("div");
+    card.className = "card";
+
+    // Create the handle for the card
+    let handle = document.createElement("div");
+    handle.className = "handle";
+    handle.setAttribute("draggable", "true");
+    card.appendChild(handle);
+
+    // Create the content division
+    let content = document.createElement("div");
+    content.className = "content";
+
+    // Creates the header with the title
+    let title = document.createElement("h5");
+    title.textContent = taskname;
+    content.appendChild(title);
+
+    // Add the editor name to the content division
+    let editor = document.createElement("p");
+    editor.textContent = editorname;
+    content.appendChild(editor);
+
+    // Add the due date to the content division
+    let dueDate = document.createElement("p");
+    dueDate.textContent = duedate;
+    content.appendChild(dueDate);
+
+    card.appendChild(content);
+
+    // Create the edit button
+    let edit = document.createElement("button");
+    edit.className = "edit";
+    edit.setAttribute("onclick", "openEditNewTask");
+
+    let img = document.createElement("img");
+    img.setAttribute("src", "img/pencil-square.svg");
+
+    edit.appendChild(img);
+
+    card.appendChild(edit);
+
+    return card;
 }

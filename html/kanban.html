@@ -42,7 +42,7 @@
 <section id="kanban">
     <!-- KANBAN-COLUMNS -------------------------->
 
-    <div class="column dropzone">
+    <div class="column dropzone" id="to-do">
         <h2>Column 1</h2>
         <div class="new-card">
             <button class="new-card-button" onclick="openCreateNewTask()"></button>
@@ -107,22 +107,22 @@
         <h3>Create a new Task</h3>
         <form id="newTask">
             <label for="nameInput">Task name:</label>
-            <input type="text" id="nameInput" name="nameInput" placeholder="Enter name here..">
+            <input type="text" id="nameInput" class="nameInput" name="taskname" placeholder="Enter name here..">
 
             <label for="descInput">Task description:</label>
-            <input type="text" id="descInput" name="descInput" placeholder="Enter discription here..">
+            <input type="text" id="descInput" class="descInput" name="decription" placeholder="Enter discription here..">
 
             <label for="editorInput">Editor:</label>
-            <input type="text" id="editorInput" name="editorInput" placeholder="Enter editor here..">
+            <input type="text" id="editorInput" class="editorInput" name="editorname" placeholder="Enter editor here..">
 
             <label for="dateInput">Due date:</label>
-            <input type="date" id="dateInput" name="dateInput" placeholder="Enter editor here..">
+            <input type="date" id="dateInput" class="dateInput" name="duedate" placeholder="Enter editor here..">
 
             <label for="prioInput">Priority:</label>
-            <select name="prioInput" id="prioInput">
-                <option value="low" id="low">low</option>
-                <option value="medium" id="medium">medium</option>
-                <option value="high" id="high">high</option>
+            <select name="priority" id="prioInput" class="prioInput">
+                <option value="low" class="low">low</option>
+                <option value="medium" class="medium">medium</option>
+                <option value="high" class="high">high</option>
             </select>
 
             <div>
@@ -137,27 +137,27 @@
     <div class="popup-format">
         <h3>Edit task</h3>
         <form id="editTask">
-            <label for="nameInput">Task name:</label>
-            <input type="text" id="nameInput" name="nameInput" placeholder="Enter name here..">
+            <label for="nameChange">Task name:</label>
+            <input type="text" id="nameChange" class="nameInput" name="taskname" placeholder="Enter name here..">
 
-            <label for="descInput">Task description:</label>
-            <input type="text" id="descInput" name="descInput" placeholder="Enter discription here..">
+            <label for="descChange">Task description:</label>
+            <input type="text" id="descChange" class="descInput" name="description" placeholder="Enter discription here..">
 
-            <label for="editorInput">Editor:</label>
-            <input type="text" id="editorInput" name="editorInput" placeholder="Enter editor here..">
+            <label for="editorChange">Editor:</label>
+            <input type="text" id="editorChange" class="editorInput" name="editorname" placeholder="Enter editor here..">
 
-            <label for="dateInput">Due date:</label>
-            <input type="date" id="dateInput" name="dateInput" placeholder="Enter editor here..">
+            <label for="dateChange">Due date:</label>
+            <input type="date" id="dateChange" class="dateInput" name="duedate" placeholder="Enter editor here..">
 
-            <label for="prioInput">Priority:</label>
-            <select name="prioInput" id="prioInput">
-                <option value="low" id="low">low</option>
-                <option value="medium" id="medium">medium</option>
-                <option value="high" id="high">high</option>
+            <label for="prioChange">Priority:</label>
+            <select name="priority" id="prioChange" class="prioInput">
+                <option value="low" class="low">low</option>
+                <option value="medium" class="medium">medium</option>
+                <option value="high" class="high">high</option>
             </select>
 
             <div>
-                <button type="submit">Create Task</button>
+                <button type="submit">Submit changes</button>
                 <button onclick="closeCreateNewTask()">Cancel</button>
             </div>
         </form>
