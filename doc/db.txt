@@ -7,4 +7,8 @@ project, column(X), position(Y), taskname, description, editorname, duedate, pri
 
 #User
 
-username, password, projects 
+username, password, projects
+
+
+
+https://mongoosejs.com/docs/models.html
