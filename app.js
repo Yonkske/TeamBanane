@@ -8,6 +8,9 @@ const mongoose = require("mongoose");
 
 // Set path to .env
 dotenv.config();
+app.use(express.static("html"));
+app.use(express.json());
+
 const dbCreds = {
     urlStart: process.env.URL_FIRST,
     user: process.env.MONGODB_USER,
@@ -29,20 +32,16 @@ const userSchema = mongoose.Schema({
 });
 const User = mongoose.model("User", userSchema);
 
-app.post("/register", async(req, res) => {
-    const newUser = new User({
-        username: req.body.username,
-        password: req.body.password
-    });
 
-    console.log(newUser);
 
-    User.create(newUser, function (err) {
-        if(err) {
-            return console.log(err);
-        }
-    })
+app.post("/register", async (req, res) => {
+
+    console.log(req.body.username);
+    const  [ rows ] = await User.create({username: req.body.username, password: req.body.password})
+    res.status(200).send();
 })
+
+
 
 // Task cards functionality
 // Defining the schema for a task
@@ -59,5 +58,5 @@ const taskSchema = mongoose.Schema({
 const Task = mongoose.model("Task", taskSchema);
 
 // Expose files stored in html-folder to public
-app.use(express.static("html"));
+
 app.listen(80);
