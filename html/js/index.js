@@ -27,9 +27,13 @@ loginForm.addEventListener("submit", (e) => {
 
     const values = Object.fromEntries(new FormData(e.target));
 
-    if (!values.username === {}) {
+    const regex = new RegExp("^\\s+$");
 
-        fetch("/register/" + values.username).then(res => res.json()).then(data => {
+    console.log(regex.test(values.projectname));
+
+    if (!regex.test(values.projectname)) {
+
+        fetch("/register/" + values.projectname).then(res => res.json()).then(data => {
             if (data.password === values.password) {
                 location.href = "kanban.html";
             } else {
