@@ -23,6 +23,7 @@ const dbCreds = {
 // The url of the database
 const url = dbCreds.urlStart + dbCreds.user + ":" + dbCreds.password + dbCreds.urlMiddle + dbCreds.dbName + dbCreds.urlEnd;
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set('useFindAndModify', false);
 
 // Login functionality+
 // Defining the schema for a user
@@ -95,7 +96,17 @@ app.get("/project/:projectname", async (req, res) => {
 
 // Update an already existing task card
 app.put("/taskcard", async (req, res) => {
-    let updatedTask = await Task.findOneAndUpdate({taskname: req.body.taskname}, );
+    let updatedTask = await Task.findOneAndUpdate({_id: req.body._id}, {
+        project: req.body.project,
+        column: req.body.column,
+        position: req.body.position,
+        taskname: req.body.taskname,
+        editorname: req.body.editorname,
+        duedate: req.body.duedate,
+        priority: req.body.priority
+    }, {new: true});
+
+    res.status(200).send(JSON.stringify(updatedTask))
 })
 
 
@@ -109,7 +120,7 @@ app.post("/taskcard", async (req, res) => {
         taskname: req.body.taskname,
         description: req.body.description,
         editorname: req.body.editorname,
-        duedate: req.body.duedate,
+        duedate: Date.parse(req.body.duedate),
         priority: req.body.priority
     })
 

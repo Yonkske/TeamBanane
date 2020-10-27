@@ -263,8 +263,8 @@ function toJSON(draggedElement) {
         position: null,
         taskname: draggedElement.childNodes[1].childNodes[0].textContent,
         editorname: draggedElement.childNodes[1].childNodes[1].textContent,
-        duedate: draggedElement.childNodes[1].childNodes[2].textContent,
-        priority: draggedElement.childNodes[0].className.substr(6, 6)
+        duedate: draggedElement.childNodes[4].textContent,
+        priority: draggedElement.childNodes[0].className.substr(7, 6).trim()
     }
 
     return cardJson;
@@ -279,7 +279,11 @@ function initialize() {
     fetch("/project/" + projectName).then(res => res.json()).then(data => {
         // TODO: replace "to-do" with card.column
         data.forEach(card => {
-            generateTaskCard("to-do", card.priority, card.taskname, card.editorname, card.duedate, card._id);
+            if(card.column === null){
+                generateTaskCard("to-do", card.priority, card.taskname, card.editorname, card.duedate, card._id);
+            } else {
+                generateTaskCard(card.column, card.priority, card.taskname, card.editorname, card.duedate, card._id);
+            }
         });
     });
 
