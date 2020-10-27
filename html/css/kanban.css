@@ -215,6 +215,10 @@
     color: inherit;
 }
 
+.idField {
+    display: none;
+}
+
 /* New-Card Overhaul ***********/
 
 :not(.new-card) {

@@ -147,7 +147,7 @@
         }).then(res => res.json()).then(data => {
             console.log(data);
 
-            generateTaskCard("to-do", data.priority, data.taskname, data.editorname, data.duedate)
+            generateTaskCard("to-do", data.priority, data.taskname, data.editorname, data.duedate, data._id)
         });
 
         console.log("FORM SUBMITTED", values);
@@ -166,7 +166,7 @@
 }
 
 // Function to generate the dom element for a task card
-function generateTaskCard(column, priority, taskname, editorname, duedate) {
+function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
     // Get the column to which to append the taskcard
     const targetColumn = document.querySelector("#" + column);
 
@@ -223,6 +223,12 @@ function generateTaskCard(column, priority, taskname, editorname, duedate) {
 
     card.appendChild(edit);
 
+    // Create the hidden id field for the task
+    let idField = document.createElement("p");
+    idField.className = "idField";
+    idField.textContent = id;
+    card.appendChild(idField);
+
     targetColumn.appendChild(card);
 }
 
@@ -235,7 +241,7 @@ function initialize() {
     fetch("/project/" + projectName).then(res => res.json()).then(data => {
         // TODO: replace "to-do" with card.column
         data.forEach(card => {
-            generateTaskCard("to-do", card.priority, card.taskname, card.editorname, card.duedate);
+            generateTaskCard("to-do", card.priority, card.taskname, card.editorname, card.duedate, card._id);
         });
     });
 

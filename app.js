@@ -93,6 +93,11 @@ app.get("/project/:projectname", async (req, res) => {
     res.status(200).send(cards);
 })
 
+// Update an already existing task card
+app.put("/taskcard", async (req, res) => {
+    let updatedTask = await Task.findOneAndUpdate({taskname: req.body.taskname}, );
+})
+
 
 // Add a new taskcard to the database
 app.post("/taskcard", async (req, res) => {
