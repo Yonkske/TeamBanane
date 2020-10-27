@@ -10,3 +10,5 @@ gen
 
 buildspec.yml
 /node_modules
+/doc
+README.md
