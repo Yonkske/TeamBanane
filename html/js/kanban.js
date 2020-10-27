@@ -142,11 +142,10 @@
             headers: {
                 "content-type": "application/json",
             }
-        }).then((res) => {
-            console.log(res.ok);
-            if(res.ok) {
-                document.querySelector("#to-do").appendChild(generateTaskCard("test", "Simon", "11.11.2022"));
-            }
+        }).then(res => res.json()).then(data => {
+            console.log(data);
+
+            generateTaskCard("to-do", data.priority, data.taskname, data.editorname, data.duedate)
         });
 
         console.log("FORM SUBMITTED", values);
@@ -164,15 +163,26 @@
     }
 }
 
-// function to generate the dom element for a task card
-function generateTaskCard(taskname, editorname, duedate) {
+// Function to generate the dom element for a task card
+function generateTaskCard(column, priority, taskname, editorname, duedate) {
+    // Get the column to which to append the taskcard
+    const targetColumn = document.querySelector("#" + column);
+
     // Creates the whole card division
     let card = document.createElement("div");
     card.className = "card";
 
     // Create the handle for the card
     let handle = document.createElement("div");
-    handle.className = "handle";
+    if (priority === "low") {
+        handle.className = "handle low";
+    }
+    if (priority === "medium") {
+        handle.className = "handle medium";
+    }
+    if (priority === "high") {
+        handle.className = "handle high";
+    }
     handle.setAttribute("draggable", "true");
     card.appendChild(handle);
 
@@ -192,7 +202,8 @@ function generateTaskCard(taskname, editorname, duedate) {
 
     // Add the due date to the content division
     let dueDate = document.createElement("p");
-    dueDate.textContent = duedate;
+    let date = duedate.substr(8, 2) + "." + duedate.substr(5, 2) + "." + duedate.substr(0, 4);
+    dueDate.textContent = date;
     content.appendChild(dueDate);
 
     card.appendChild(content);
@@ -202,6 +213,7 @@ function generateTaskCard(taskname, editorname, duedate) {
     edit.className = "edit";
     edit.setAttribute("onclick", "openEditNewTask");
 
+    // Create the image for the edit button
     let img = document.createElement("img");
     img.setAttribute("src", "img/pencil-square.svg");
 
@@ -209,5 +221,5 @@ function generateTaskCard(taskname, editorname, duedate) {
 
     card.appendChild(edit);
 
-    return card;
+    targetColumn.appendChild(card);
 }

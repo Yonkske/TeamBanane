@@ -102,8 +102,7 @@ app.post("/taskcard", async (req, res) => {
             console.log(err);
             res.status(500).send();
         } else {
-            res.json(newTaskcard);
-            res.status(200).send();
+            res.status(200).send(JSON.stringify(newTaskcard));
         }
     })
 })

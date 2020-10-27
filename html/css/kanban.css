@@ -169,10 +169,22 @@
     min-height: inherit;
     min-width: 15px;
     width: auto;
-    background-color: green;
+    background-color: #999999;
     border-bottom-left-radius: 4px;
     border-top-left-radius: 4px;
     float: left;
+}
+
+.handle .low {
+    background-color: green;
+}
+
+.handle .medium {
+    background-color: orange;
+}
+
+.handle .high {
+    background-color: red;
 }
 
 .content {
