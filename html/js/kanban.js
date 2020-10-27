@@ -10,11 +10,11 @@
 // On drag start
     document.addEventListener("dragstart", function (event) {
         // referenece the dragged element on drag start
-        console.log(typeof event.target.className)
         if (event.target.className.includes("handle")) {
             dragged = event.target.parentNode;
         }
 
+        console.log(toJSON(dragged));
         // For making it sortable
         if (event.target.className === "handle") {
             dragStart(event);
@@ -72,6 +72,8 @@
             // Place the "Create a new task.."-node as last element
             lastChild.parentNode.removeChild(lastChild);
             event.target.appendChild(lastChild);
+
+            console.log(toJSON(dragged));
         }
 
     }, false);
@@ -225,11 +227,49 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
 
     // Create the hidden id field for the task
     let idField = document.createElement("p");
-    idField.className = "idField";
+    idField.className = "invisible";
     idField.textContent = id;
     card.appendChild(idField);
 
+    // Create the hidden date field for the task
+    let dateField = document.createElement("p");
+    dateField.className = "invisible";
+    dateField.textContent = duedate;
+    card.appendChild(dateField);
+
     targetColumn.appendChild(card);
+}
+
+// Update function
+function updateTaskCard(card) {
+    fetch("/taskcard", {
+        method: "PUT",
+        body: "whatever",
+        headers: {
+            "content-type": "application/json",
+        }
+    }).then(res => res.json()).then(data => {
+
+    });
+
+    console.log("TASKCARD UPDATED");
+}
+
+// Generete JSON from taskcard(html)
+function toJSON(draggedElement) {
+    console.log("called");
+    let cardJson = {
+        _id: draggedElement.childNodes[3].textContent,
+        project: document.querySelector('#project-name').textContent,
+        column: draggedElement.parentElement.childNodes[1].textContent.toLowerCase(),
+        position: null,
+        taskname: draggedElement.childNodes[1].childNodes[0].textContent,
+        editorname: draggedElement.childNodes[1].childNodes[1].textContent,
+        duedate: draggedElement.childNodes[1].childNodes[2].textContent,
+        priority: draggedElement.childNodes[0].className.substr(6, 6)
+    }
+
+    return cardJson;
 }
 
 // Initializing the page and filling it with the given data
