@@ -10,12 +10,13 @@
 // On drag start
     document.addEventListener("dragstart", function (event) {
         // referenece the dragged element on drag start
-        if (event.target.className == "handle") {
+        console.log(typeof event.target.className)
+        if (event.target.className.includes("handle")) {
             dragged = event.target.parentNode;
         }
 
         // For making it sortable
-        if (event.target.className == "handle") {
+        if (event.target.className === "handle") {
             dragStart(event);
         }
     }, false);
@@ -30,7 +31,7 @@
         event.preventDefault();
 
         // For making it sortable
-        if (event.target.className == "task-card") {
+        if (event.target.className === "task-card") {
             dragOver(event);
         }
     }, false);
@@ -38,7 +39,7 @@
 // On entering the dropzone
     document.addEventListener("dragenter", function (event) {
         // highlight target
-        if (event.target.className == "column dropzone" && event.target != dragged.parentNode) {
+        if (event.target.className === "column dropzone" && event.target != dragged.parentNode) {
             event.target.style.background = "rgb(160, 114, 83)";
         }
     }, false);
@@ -46,7 +47,7 @@
 // On leaving the dropzone
     document.addEventListener("dragleave", function (event) {
         // reset highlight on target
-        if (event.target.className == "column dropzone") {
+        if (event.target.className === "column dropzone") {
             event.target.style.background = "";
         }
     }, false);
@@ -57,7 +58,7 @@
         event.preventDefault();
 
         // move the dragged element to the dropzone
-        if (event.target.className == "column dropzone") {
+        if (event.target.className === "column dropzone") {
             event.target.style.background = "";
 
             // Select the "Create a new task.."-node
