@@ -10,12 +10,13 @@
 // On drag start
     document.addEventListener("dragstart", function (event) {
         // referenece the dragged element on drag start
-        if (event.target.className == "handle") {
+        console.log(typeof event.target.className)
+        if (event.target.className.includes("handle")) {
             dragged = event.target.parentNode;
         }
 
         // For making it sortable
-        if (event.target.className == "handle") {
+        if (event.target.className === "handle") {
             dragStart(event);
         }
     }, false);
@@ -30,7 +31,7 @@
         event.preventDefault();
 
         // For making it sortable
-        if (event.target.className == "task-card") {
+        if (event.target.className === "task-card") {
             dragOver(event);
         }
     }, false);
@@ -38,7 +39,7 @@
 // On entering the dropzone
     document.addEventListener("dragenter", function (event) {
         // highlight target
-        if (event.target.className == "column dropzone" && event.target != dragged.parentNode) {
+        if (event.target.className === "column dropzone" && event.target !== dragged.parentNode) {
             event.target.style.background = "rgb(160, 114, 83)";
         }
     }, false);
@@ -46,7 +47,7 @@
 // On leaving the dropzone
     document.addEventListener("dragleave", function (event) {
         // reset highlight on target
-        if (event.target.className == "column dropzone") {
+        if (event.target.className === "column dropzone") {
             event.target.style.background = "";
         }
     }, false);
@@ -57,7 +58,7 @@
         event.preventDefault();
 
         // move the dragged element to the dropzone
-        if (event.target.className == "column dropzone") {
+        if (event.target.className === "column dropzone") {
             event.target.style.background = "";
 
             // Select the "Create a new task.."-node
@@ -130,6 +131,27 @@
         console.log("submitted");
         closeCreateNewTask();
     }
+
+    const newTaskForm = document.querySelector("#newTask");
+
+    newTaskForm.addEventListener("submit", (e) => {
+        const values = Object.fromEntries(new FormData(e.target));
+        const project = document.querySelector("#project-name")
+
+        fetch("/taskcard", {
+            method: "POST",
+            body: JSON.stringify(values),
+            headers: {
+                "content-type": "application/json",
+            }
+        }).then(res => res.json()).then(data => {
+            console.log(data);
+
+            generateTaskCard("to-do", data.priority, data.taskname, data.editorname, data.duedate)
+        });
+
+        console.log("FORM SUBMITTED", values);
+    })
 }
 // Functions to edit task-description
 { // Hide
@@ -141,4 +163,65 @@
     function closeEditNewTask() {
         document.getElementById("editCardForm").style.display = "none";
     }
+}
+
+// Function to generate the dom element for a task card
+function generateTaskCard(column, priority, taskname, editorname, duedate) {
+    // Get the column to which to append the taskcard
+    const targetColumn = document.querySelector("#" + column);
+
+    // Creates the whole card division
+    let card = document.createElement("div");
+    card.className = "card";
+
+    // Create the handle for the card
+    let handle = document.createElement("div");
+    if (priority === "low") {
+        handle.className = "handle low";
+    }
+    if (priority === "medium") {
+        handle.className = "handle medium";
+    }
+    if (priority === "high") {
+        handle.className = "handle high";
+    }
+    handle.setAttribute("draggable", "true");
+    card.appendChild(handle);
+
+    // Create the content division
+    let content = document.createElement("div");
+    content.className = "content";
+
+    // Creates the header with the title
+    let title = document.createElement("h5");
+    title.textContent = taskname;
+    content.appendChild(title);
+
+    // Add the editor name to the content division
+    let editor = document.createElement("p");
+    editor.textContent = editorname;
+    content.appendChild(editor);
+
+    // Add the due date to the content division
+    let dueDate = document.createElement("p");
+    let date = duedate.substr(8, 2) + "." + duedate.substr(5, 2) + "." + duedate.substr(0, 4);
+    dueDate.textContent = date;
+    content.appendChild(dueDate);
+
+    card.appendChild(content);
+
+    // Create the edit button
+    let edit = document.createElement("button");
+    edit.className = "edit";
+    edit.setAttribute("onclick", "openEditNewTask()");
+
+    // Create the image for the edit button
+    let img = document.createElement("img");
+    img.setAttribute("src", "img/pencil-square.svg");
+
+    edit.appendChild(img);
+
+    card.appendChild(edit);
+
+    targetColumn.appendChild(card);
 }

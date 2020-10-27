@@ -80,9 +80,32 @@ const taskSchema = mongoose.Schema({
     description: String,
     editorname: String,
     duedate: Date,
-    priority: Number
+    priority: String
 })
 const Task = mongoose.model("Task", taskSchema);
+
+app.post("/taskcard", async (req, res) => {
+    // TODO: find out how to get the collumn, the project and the position of the taskcard
+    const newTaskcard = new Task({
+        project: null,
+        column: null,
+        position: null,
+        taskname: req.body.taskname,
+        description: req.body.description,
+        editorname: req.body.editorname,
+        duedate: req.body.duedate,
+        priority: req.body.priority
+    })
+
+    newTaskcard.save(function (err) {
+        if(err) {
+            console.log(err);
+            res.status(500).send();
+        } else {
+            res.status(200).send(JSON.stringify(newTaskcard));
+        }
+    })
+})
 
 // Expose files stored in html-folder to public
 

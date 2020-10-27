@@ -35,7 +35,7 @@
     font-family: 'Roboto Slab', serif;
     background-color: rgb(59, 24, 0);
     float: left;
-    width: 250px;
+    width: 31%;
     height: 90%;
     margin: 1%;
     margin-top: 4%;
@@ -83,7 +83,7 @@
 }
 
 .task-card:hover {
-    transition-duration: 0, 1s;
+    transition-duration: 0.1s;
     border: #be6e2b solid;
 }
 
@@ -169,10 +169,22 @@
     min-height: inherit;
     min-width: 15px;
     width: auto;
-    background-color: green;
+    background-color: #999999;
     border-bottom-left-radius: 4px;
     border-top-left-radius: 4px;
     float: left;
+}
+
+.handle .low {
+    background-color: green;
+}
+
+.handle .medium {
+    background-color: orange;
+}
+
+.handle .high {
+    background-color: red;
 }
 
 .content {
@@ -209,12 +221,23 @@
     order: -1;
 }
 
-.new-card button {
+.column h2 {
+    order: -2;
+}
+
+.new-card button img {
     margin-top: 2%;
     background: url("../img/plus.svg");
-    background-color: #be6e2b;
+    background-color: rgb(59, 24, 0);
     height: 15px;
     width: 15px;
+    border-radius: 15px;
+    border: none;
+}
+
+.new-card button{
+    margin-top: 2%;
+    background-color: #be6e2b;
     border-radius: 15px;
     border: none;
 }
@@ -247,42 +270,42 @@ label {
     margin: 2%;
 }
 
-#nameInput {
+.nameInput {
     margin: 2%;
     width: 96%;
 }
 
-#descInput {
+.descInput {
     margin: 2%;
     width: 96%;
     height: 50px;
 }
 
-#editorInput {
+.editorInput {
     margin: 2%;
     width: 96%;
 }
 
-#dateInput {
+.dateInput {
     margin: 2%;
     width: 96%;
 }
 
-#prioInput {
+.prioInput {
     margin: 2%;
     width: 96%;
     text-align: center;
 }
 
-#low {
+.low {
     background-color: green;
 }
 
-#medium {
+.medium {
     background-color: orange;
 }
 
-#high {
+.high {
     background-color: red;
 }
 
