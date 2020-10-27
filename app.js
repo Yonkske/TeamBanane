@@ -89,8 +89,6 @@ const Task = mongoose.model("Task", taskSchema);
 app.get("/project/:projectname", async (req, res) => {
 
     const cards = await Task.find().where("project").in(req.params.projectname).exec();
-
-    console.log(cards);
     res.status(200).send(cards);
 })
 
