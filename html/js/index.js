@@ -35,18 +35,23 @@ loginForm.addEventListener("submit", (e) => {
 
     const regex = new RegExp("^\\s+$");
 
-    console.log(regex.test(values.projectname));
-
     if (!regex.test(values.projectname)) {
 
-        fetch("/register/" + values.projectname).then(res => res.json()).then(data => {
-            if (data.password === values.password) {
-                location.href = "kanban.html";
-            } else {
-
-            }
-        });
+        fetch("/register/" + values.projectname)
+            .then(function (res) {
+                    res.json().then(data => {
+                        if (data.user === "notfound") {
+                            alert("user not found");
+                        }
+                        else if (data.password === values.password) {
+                            location.href = "kanban.html";
+                        } else {
+                            alert("passwords do not match");
+                        }
+                    });
+            })
     } else {
         alert("Abhandlung für den Fall, dass nichts eingegeben wurde. Avoids 404. ");
     }
+
 });

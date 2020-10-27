@@ -36,7 +36,7 @@ const User = mongoose.model("User", userSchema);
 
 app.post("/register", async (req, res) => {
 
-    if(await User.findOne({username: req.body.username}).exec() === null) {
+    if (await User.findOne({username: req.body.username}).exec() === null) {
         const newUser = new User({
             username: req.body.projectname,
             password: req.body.password,
@@ -58,16 +58,15 @@ app.post("/register", async (req, res) => {
 
 app.get("/register/:projectname", async (req, res) => {
 
+
     const foundUser = await User.findOne({username: req.params.projectname}).exec();
-    res.send(JSON.stringify(foundUser));
 
+    if (foundUser != null) {
+        res.send(JSON.stringify(foundUser));
+    } else {
+        res.send({user: "notfound"});
+    }
 })
-
-
-
-
-
-
 
 
 // Task cards functionality
