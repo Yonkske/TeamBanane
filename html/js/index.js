@@ -6,17 +6,23 @@ registrationForm.addEventListener("submit", (e) => {
 
     const values = Object.fromEntries(new FormData(e.target));
 
-    fetch("/register", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-            "content-type": "application/json",
-        },
-    }).then((res) => {
-        console.log(res.ok);
-    });
+    if (values.password === values.passwordrepeat) {
+        fetch("/register", {
+            method: "POST",
+            body: JSON.stringify(values),
+            headers: {
+                "content-type": "application/json",
+            },
+        }).then((res) => {
+            console.log(res.ok);
+        });
 
-    console.log("FORM SUBMITTED", values);
+        console.log("FORM SUBMITTED", values);
+    } else {
+        console.log("passwords do not match.")
+    }
+
+
 });
 
 
