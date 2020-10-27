@@ -38,7 +38,7 @@ app.post("/register", async (req, res) => {
 
     if(await User.findOne({username: req.body.username}).exec() === null) {
         const newUser = new User({
-            username: req.body.username,
+            username: req.body.projectname,
             password: req.body.password,
             projects: ['first']
         });
@@ -56,9 +56,9 @@ app.post("/register", async (req, res) => {
 })
 
 
-app.get("/register/:username", async (req, res) => {
+app.get("/register/:projectname", async (req, res) => {
 
-    const foundUser = await User.findOne({username: req.params.username}).exec();
+    const foundUser = await User.findOne({username: req.params.projectname}).exec();
     res.send(JSON.stringify(foundUser));
 
 })

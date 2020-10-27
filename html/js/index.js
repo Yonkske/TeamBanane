@@ -26,10 +26,10 @@ loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const values = Object.fromEntries(new FormData(e.target));
+    console.log(values.projectname, values.password);
+    if (!values.projectname === {}) {
 
-    if (!values.username === {}) {
-
-        fetch("/register/" + values.username).then(res => res.json()).then(data => {
+        fetch("/register/" + values.projectname).then(res => res.json()).then(data => {
             if (data.password === values.password) {
                 location.href = "kanban.html";
             } else {
