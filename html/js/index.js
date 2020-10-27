@@ -14,10 +14,14 @@ registrationForm.addEventListener("submit", (e) => {
                 "content-type": "application/json",
             },
         }).then((res) => {
-            console.log(res.ok);
+
+            return res.json()}).then(data => {
+            if(data.project === "alreadyexists" ) {
+                alert("project already exists!");
+            }
+
         });
 
-        console.log("FORM SUBMITTED", values);
     } else {
         alert("passwords do not match.");
     }
