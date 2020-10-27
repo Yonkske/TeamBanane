@@ -56,10 +56,10 @@ app.post("/register", async (req, res) => {
 })
 
 
-app.get("/register", async (req, res) => {
+app.get("/register/:username", async (req, res) => {
 
-    let foundUser = User.findOne({username: req.body.username}).exec();
-    res.json(foundUser);
+    const foundUser = await User.findOne({username: req.params.username}).exec();
+    res.send(JSON.stringify(foundUser));
 
 })
 
