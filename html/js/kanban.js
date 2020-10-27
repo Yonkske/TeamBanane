@@ -125,6 +125,14 @@
         crTask.onsubmit = submitted.bind(crTask);
         console.log(crTask);
     }
+    /*
+    function deleteSelectedTask() {
+        let crTask = document.getElementById("newTask");
+        crTask.onsubmit = submitted.bind(crTask);
+        console.log(crTask);
+    }
+
+     */
 
     function submitted(event) {
         event.preventDefault();
@@ -159,6 +167,13 @@
         document.getElementById("editCardForm").style.display = "block";
         createNewTask();
     }
+    /*
+    function deleteTask() {
+        document.getElementById("editCardForm").style.display = "block";
+        deleteSelectedTask();
+    }
+
+     */
 
     function closeEditNewTask() {
         document.getElementById("editCardForm").style.display = "none";
