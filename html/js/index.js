@@ -6,17 +6,23 @@ registrationForm.addEventListener("submit", (e) => {
 
     const values = Object.fromEntries(new FormData(e.target));
 
-    fetch("/register", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-            "content-type": "application/json",
-        },
-    }).then((res) => {
-        console.log(res.ok);
-    });
+    if (values.password === values.passwordrepeat) {
+        fetch("/register", {
+            method: "POST",
+            body: JSON.stringify(values),
+            headers: {
+                "content-type": "application/json",
+            },
+        }).then((res) => {
+            console.log(res.ok);
+        });
 
-    console.log("FORM SUBMITTED", values);
+        console.log("FORM SUBMITTED", values);
+    } else {
+        alert("passwords do not match.");
+    }
+
+
 });
 
 
@@ -41,6 +47,6 @@ loginForm.addEventListener("submit", (e) => {
             }
         });
     } else {
-        console.log("Abhandlung für den Fall, dass nichts eingegeben wurde. Avoids 404. ");
+        alert("Abhandlung für den Fall, dass nichts eingegeben wurde. Avoids 404. ");
     }
 });
