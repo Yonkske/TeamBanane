@@ -36,7 +36,7 @@ const User = mongoose.model("User", userSchema);
 
 app.post("/register", async (req, res) => {
 
-    if (await User.findOne({username: req.body.username}).exec() === null) {
+    if (await User.findOne({username: req.body.projectname}).exec() === null) {
         const newUser = new User({
             username: req.body.projectname,
             password: req.body.password,
@@ -47,11 +47,13 @@ app.post("/register", async (req, res) => {
             if (err) {
                 res.status(500).send();
             } else {
-                res.status(200).send();
+                res.status(200).send({});
             }
         });
     } else {
-        res.status(420).send();
+        //res.status(420).send();
+
+        res.send({project: "alreadyexists"});
     }
 })
 
