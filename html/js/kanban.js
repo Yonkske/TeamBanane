@@ -14,7 +14,6 @@
             dragged = event.target.parentNode;
         }
 
-        console.log(toJSON(dragged));
         // For making it sortable
         if (event.target.className === "handle") {
             dragStart(event);
@@ -73,7 +72,7 @@
             lastChild.parentNode.removeChild(lastChild);
             event.target.appendChild(lastChild);
 
-            console.log(toJSON(dragged));
+            updateTaskCard(toJSON(dragged));
         }
 
     }, false);
@@ -241,10 +240,10 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
 }
 
 // Update function
-function updateTaskCard(card) {
+function updateTaskCard(cardJSON) {
     fetch("/taskcard", {
         method: "PUT",
-        body: "whatever",
+        body: JSON.stringify(cardJSON),
         headers: {
             "content-type": "application/json",
         }
@@ -257,11 +256,10 @@ function updateTaskCard(card) {
 
 // Generete JSON from taskcard(html)
 function toJSON(draggedElement) {
-    console.log("called");
     let cardJson = {
         _id: draggedElement.childNodes[3].textContent,
         project: document.querySelector('#project-name').textContent,
-        column: draggedElement.parentElement.childNodes[1].textContent.toLowerCase(),
+        column: draggedElement.parentNode.id,
         position: null,
         taskname: draggedElement.childNodes[1].childNodes[0].textContent,
         editorname: draggedElement.childNodes[1].childNodes[1].textContent,
