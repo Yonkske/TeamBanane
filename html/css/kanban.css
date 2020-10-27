@@ -221,6 +221,10 @@
     order: -1;
 }
 
+.column h2 {
+    order: -2;
+}
+
 .new-card button img {
     margin-top: 2%;
     background: url("../img/plus.svg");
