@@ -136,7 +136,7 @@
 
     newTaskForm.addEventListener("submit", (e) => {
         const values = Object.fromEntries(new FormData(e.target));
-        const project = document.querySelector("#project-name")
+        values.project = document.querySelector("#project-name").textContent;
 
         fetch("/taskcard", {
             method: "POST",
@@ -224,4 +224,20 @@ function generateTaskCard(column, priority, taskname, editorname, duedate) {
     card.appendChild(edit);
 
     targetColumn.appendChild(card);
+}
+
+// Initializing the page and filling it with the given data
+function initialize() {
+
+    const projectName = document.querySelector("#project-name").textContent;
+
+
+    fetch("/project/" + projectName).then(res => res.json()).then(data => {
+        // TODO: replace "to-do" with card.column
+        data.forEach(card => {
+            generateTaskCard("to-do", card.priority, card.taskname, card.editorname, card.duedate);
+        });
+    });
+
+    console.log("PROJECT PAGE INITIALIZED!");
 }

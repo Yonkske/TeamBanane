@@ -72,6 +72,7 @@ app.get("/register/:projectname", async (req, res) => {
 
 
 // Task cards functionality
+
 // Defining the schema for a task
 const taskSchema = mongoose.Schema({
     project: String,
@@ -85,10 +86,19 @@ const taskSchema = mongoose.Schema({
 })
 const Task = mongoose.model("Task", taskSchema);
 
+// Get all task cards of the project form the database and send them to the client
+app.get("/project/:projectname", async (req, res) => {
+
+    const cards = await Task.find().where("project").in(req.params.projectname).exec();
+    res.status(200).send(cards);
+})
+
+
+// Add a new taskcard to the database
 app.post("/taskcard", async (req, res) => {
     // TODO: find out how to get the collumn, the project and the position of the taskcard
     const newTaskcard = new Task({
-        project: null,
+        project: req.body.project,
         column: null,
         position: null,
         taskname: req.body.taskname,
