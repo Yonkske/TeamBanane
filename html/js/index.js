@@ -26,8 +26,12 @@ loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const values = Object.fromEntries(new FormData(e.target));
-    console.log(values.projectname, values.password);
-    if (!values.projectname === {}) {
+
+    const regex = new RegExp("/^\s+$/");
+
+
+
+    if (regex.test(values.projectname)) {
 
         fetch("/register/" + values.projectname).then(res => res.json()).then(data => {
             if (data.password === values.password) {
