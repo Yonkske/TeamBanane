@@ -10,7 +10,6 @@
 // On drag start
     document.addEventListener("dragstart", function (event) {
         // referenece the dragged element on drag start
-        console.log(typeof event.target.className)
         if (event.target.className.includes("handle")) {
             dragged = event.target.parentNode;
         }
@@ -72,6 +71,8 @@
             // Place the "Create a new task.."-node as last element
             lastChild.parentNode.removeChild(lastChild);
             event.target.appendChild(lastChild);
+
+            updateTaskCard(toJSON(dragged));
         }
 
     }, false);
@@ -147,7 +148,7 @@
         }).then(res => res.json()).then(data => {
             console.log(data);
 
-            generateTaskCard("to-do", data.priority, data.taskname, data.editorname, data.duedate)
+            generateTaskCard("to-do", data.priority, data.taskname, data.editorname, data.duedate, data._id)
         });
 
         console.log("FORM SUBMITTED", values);
@@ -166,7 +167,7 @@
 }
 
 // Function to generate the dom element for a task card
-function generateTaskCard(column, priority, taskname, editorname, duedate) {
+function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
     // Get the column to which to append the taskcard
     const targetColumn = document.querySelector("#" + column);
 
@@ -223,7 +224,50 @@ function generateTaskCard(column, priority, taskname, editorname, duedate) {
 
     card.appendChild(edit);
 
+    // Create the hidden id field for the task
+    let idField = document.createElement("p");
+    idField.className = "invisible";
+    idField.textContent = id;
+    card.appendChild(idField);
+
+    // Create the hidden date field for the task
+    let dateField = document.createElement("p");
+    dateField.className = "invisible";
+    dateField.textContent = duedate;
+    card.appendChild(dateField);
+
     targetColumn.appendChild(card);
+}
+
+// Update function
+function updateTaskCard(cardJSON) {
+    fetch("/taskcard", {
+        method: "PUT",
+        body: JSON.stringify(cardJSON),
+        headers: {
+            "content-type": "application/json",
+        }
+    }).then(res => res.json()).then(data => {
+
+    });
+
+    console.log("TASKCARD UPDATED");
+}
+
+// Generete JSON from taskcard(html)
+function toJSON(draggedElement) {
+    let cardJson = {
+        _id: draggedElement.childNodes[3].textContent,
+        project: document.querySelector('#project-name').textContent,
+        column: draggedElement.parentNode.id,
+        position: null,
+        taskname: draggedElement.childNodes[1].childNodes[0].textContent,
+        editorname: draggedElement.childNodes[1].childNodes[1].textContent,
+        duedate: draggedElement.childNodes[4].textContent,
+        priority: draggedElement.childNodes[0].className.substr(7, 6).trim()
+    }
+
+    return cardJson;
 }
 
 // Initializing the page and filling it with the given data
@@ -235,7 +279,11 @@ function initialize() {
     fetch("/project/" + projectName).then(res => res.json()).then(data => {
         // TODO: replace "to-do" with card.column
         data.forEach(card => {
-            generateTaskCard("to-do", card.priority, card.taskname, card.editorname, card.duedate);
+            if(card.column === null){
+                generateTaskCard("to-do", card.priority, card.taskname, card.editorname, card.duedate, card._id);
+            } else {
+                generateTaskCard(card.column, card.priority, card.taskname, card.editorname, card.duedate, card._id);
+            }
         });
     });
 
