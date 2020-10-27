@@ -19,7 +19,7 @@ registrationForm.addEventListener("submit", (e) => {
 
         console.log("FORM SUBMITTED", values);
     } else {
-        console.log("passwords do not match.")
+        alert("passwords do not match.");
     }
 
 
@@ -47,6 +47,6 @@ loginForm.addEventListener("submit", (e) => {
             }
         });
     } else {
-        console.log("Abhandlung für den Fall, dass nichts eingegeben wurde. Avoids 404. ");
+        alert("Abhandlung für den Fall, dass nichts eingegeben wurde. Avoids 404. ");
     }
 });
