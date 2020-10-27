@@ -39,7 +39,7 @@
 // On entering the dropzone
     document.addEventListener("dragenter", function (event) {
         // highlight target
-        if (event.target.className === "column dropzone" && event.target != dragged.parentNode) {
+        if (event.target.className === "column dropzone" && event.target !== dragged.parentNode) {
             event.target.style.background = "rgb(160, 114, 83)";
         }
     }, false);
@@ -136,6 +136,7 @@
 
     newTaskForm.addEventListener("submit", (e) => {
         const values = Object.fromEntries(new FormData(e.target));
+        const project = document.querySelector("#project-name")
 
         fetch("/taskcard", {
             method: "POST",
