@@ -212,7 +212,7 @@ function generateTaskCard(column, priority, taskname, editorname, duedate) {
     // Create the edit button
     let edit = document.createElement("button");
     edit.className = "edit";
-    edit.setAttribute("onclick", "openEditNewTask");
+    edit.setAttribute("onclick", "openEditNewTask()");
 
     // Create the image for the edit button
     let img = document.createElement("img");

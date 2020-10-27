@@ -45,21 +45,18 @@
     <div class="column dropzone" id="to-do">
         <h2>TO-DO</h2>
         <div class="new-card">
-            <button class="new-card-button" onclick="openCreateNewTask()"></button>
+            <button class="new-card-button" onclick="openCreateNewTask()">
+                <img src="../img/plus.svg">
+                <p>Add a new task</p>
+            </button>
         </div>
 
     </div>
     <div class="column dropzone" id="doing">
         <h2>Doing</h2>
-        <div class="new-card">
-            <button class="new-card-button" onclick="openCreateNewTask()"></button>
-        </div>
     </div>
     <div class="column dropzone" id="done">
         <h2>DONE</h2>
-        <div class="new-card">
-            <button class="new-card-button" onclick="openCreateNewTask()"></button>
-        </div>
     </div>
 
 </section>
@@ -90,7 +87,7 @@
 
             <div>
                 <button type="submit">Create Task</button>
-                <button onclick="closeCreateNewTask()">Cancel</button>
+                <button type="reset" onclick="closeCreateNewTask()">Cancel</button>
             </div>
         </form>
     </div>
@@ -123,7 +120,7 @@
 
             <div>
                 <button type="submit">Submit changes</button>
-                <button onclick="closeCreateNewTask()">Cancel</button>
+                <button type="reset" onclick="closeEditNewTask()">Cancel</button>
             </div>
         </form>
     </div>

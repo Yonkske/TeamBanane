@@ -221,12 +221,19 @@
     order: -1;
 }
 
-.new-card button {
+.new-card button img {
     margin-top: 2%;
     background: url("../img/plus.svg");
-    background-color: #be6e2b;
+    background-color: rgb(59, 24, 0);
     height: 15px;
     width: 15px;
+    border-radius: 15px;
+    border: none;
+}
+
+.new-card button{
+    margin-top: 2%;
+    background-color: #be6e2b;
     border-radius: 15px;
     border: none;
 }
