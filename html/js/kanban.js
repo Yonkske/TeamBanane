@@ -164,9 +164,16 @@
 }
 // Functions to edit task-description
 { // Hide
-    function openEditNewTask() {
-        document.getElementById("editCardForm").style.display = "block";
-        createNewTask();
+    function openEditNewTask(event) {
+        console.log(event);
+        let card = event.parentNode.parentNode;
+        console.log(card);
+        console.log(toJSON(card));
+
+        const editForm = document.querySelector("#editCardForm");
+        console.log(editForm);
+
+        editForm.style.display = "block";
     }
     /*
     function deleteTask() {
@@ -233,7 +240,7 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
     // Create the edit button
     let edit = document.createElement("button");
     edit.className = "edit";
-    edit.setAttribute("onclick", "openEditNewTask()");
+    edit.setAttribute("onclick", "openEditNewTask(this)");
 
     // Create the image for the edit button
     let img = document.createElement("img");
@@ -248,7 +255,7 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
     let kill = document.createElement("button");
     let editKill = document.createElement("div");
     kill.className = "kill";
-    kill.setAttribute("onclick", "openEditNewTask()");
+    kill.setAttribute("onclick", "openEditNewTask(this)");
 
     // Create the image for the kill button
     let killImg = document.createElement("img");
@@ -293,6 +300,7 @@ function updateTaskCard(cardJSON) {
 
 // Generete JSON from taskcard(html)
 function toJSON(draggedElement) {
+    console.log(draggedElement);
     let cardJson = {
         _id: draggedElement.childNodes[3].textContent,
         project: document.querySelector('#project-name').textContent,
