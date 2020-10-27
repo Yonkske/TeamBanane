@@ -126,6 +126,14 @@
         crTask.onsubmit = submitted.bind(crTask);
         console.log(crTask);
     }
+    /*
+    function deleteSelectedTask() {
+        let crTask = document.getElementById("newTask");
+        crTask.onsubmit = submitted.bind(crTask);
+        console.log(crTask);
+    }
+
+     */
 
     function submitted(event) {
         event.preventDefault();
@@ -160,6 +168,13 @@
         document.getElementById("editCardForm").style.display = "block";
         createNewTask();
     }
+    /*
+    function deleteTask() {
+        document.getElementById("editCardForm").style.display = "block";
+        deleteSelectedTask();
+    }
+
+     */
 
     function closeEditNewTask() {
         document.getElementById("editCardForm").style.display = "none";
@@ -174,6 +189,10 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
     // Creates the whole card division
     let card = document.createElement("div");
     card.className = "card";
+
+    // Creates the whole card division
+    let editsection = document.createElement("div");
+    editsection.className = "editsection";
 
     // Create the handle for the card
     let handle = document.createElement("div");
@@ -218,11 +237,28 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
 
     // Create the image for the edit button
     let img = document.createElement("img");
-    img.setAttribute("src", "img/pencil-square.svg");
+    img.setAttribute("src", "img/icons8-edit.svg");
 
     edit.appendChild(img);
 
     card.appendChild(edit);
+
+
+    // Create the kill button
+    let kill = document.createElement("button");
+    let editKill = document.createElement("div");
+    kill.className = "kill";
+    kill.setAttribute("onclick", "openEditNewTask()");
+
+    // Create the image for the kill button
+    let killImg = document.createElement("img");
+    killImg.setAttribute("src", "img/icons8-delete.svg");
+
+    kill.appendChild(killImg);
+    editsection.appendChild(kill);
+    editsection.appendChild(edit);
+
+    card.appendChild(editsection);
 
     // Create the hidden id field for the task
     let idField = document.createElement("p");
@@ -235,6 +271,7 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
     dateField.className = "invisible";
     dateField.textContent = duedate;
     card.appendChild(dateField);
+
 
     targetColumn.appendChild(card);
 }
