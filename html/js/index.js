@@ -46,7 +46,7 @@ loginForm.addEventListener("submit", (e) => {
             .then(function (res) {
                 res.json().then(data => {
                     if (data.project === "notfound") {
-                        alert("user not found");
+                        alert("project not found");
                     } else if (data.password === values.password) {
                         sessionStorage.setItem('project', values.projectname.toString());
                         location.href = "kanban.html?projectname=" + data.project;
@@ -55,8 +55,6 @@ loginForm.addEventListener("submit", (e) => {
                     }
                 });
             })
-    } else {
-        alert("Abhandlung für den Fall, dass nichts eingegeben wurde. Avoids 404. ");
     }
 
 });
