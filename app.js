@@ -80,7 +80,6 @@ const taskSchema = mongoose.Schema({
     column: String,
     position: Number,
     taskname: String,
-    description: String,
     editorname: String,
     duedate: Date,
     priority: String
@@ -96,6 +95,7 @@ app.get("/project/:projectname", async (req, res) => {
 
 // Update an already existing task card
 app.put("/taskcard", async (req, res) => {
+    console.log("now we are here");
     let updatedTask = await Task.findOneAndUpdate({_id: req.body._id}, {
         project: req.body.project,
         column: req.body.column,
@@ -118,7 +118,6 @@ app.post("/taskcard", async (req, res) => {
         column: null,
         position: null,
         taskname: req.body.taskname,
-        description: req.body.description,
         editorname: req.body.editorname,
         duedate: Date.parse(req.body.duedate),
         priority: req.body.priority
