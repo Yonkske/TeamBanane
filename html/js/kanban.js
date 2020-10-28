@@ -166,6 +166,7 @@
 // Functions to edit task-description
 { // Hide
     let card;
+
     function openEditNewTask(event) {
         card = event.parentNode.parentNode;
         console.log(card);
@@ -179,7 +180,7 @@
 
     const editForm = document.querySelector("#editTask");
 
-    editForm.addEventListener("submit", (e) =>  {
+    editForm.addEventListener("submit", (e) => {
         const values = Object.fromEntries(new FormData(e.target));
         let mappedCard = cardValueMapping(toJSON(card), values);
         updateTaskCard(card, mappedCard);
@@ -194,13 +195,11 @@
             method: "DELETE",
             body: JSON.stringify(toJSON(card)),
             headers: {
-                "content-type":"application/json",
+                "content-type": "application/json",
             }
         }).then(res => {
-            card.innerHTML = '';
-            card.parentNode.removeChild(card);
+            card.remove();
         })
-
 
 
     }
