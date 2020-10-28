@@ -61,6 +61,8 @@ loginForm.addEventListener("submit", (e) => {
 });
 contactForm.addEventListener("submit", (e) =>{
     e.preventDefault();
-    window.location.href = "mailto:ion.tabyrca@gmx.de?subject=test&body=testmessage%20goes%20here";
+    let subject = document.querySelector("#subject").value;
+    let message = document.querySelector("#message").value;
+    window.location.href = "mailto:ion.tabyrca@gmx.de?subject="+subject+"&body="+message;
 
 });
