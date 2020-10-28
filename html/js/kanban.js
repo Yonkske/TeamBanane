@@ -185,14 +185,17 @@
         updateTaskCard(card, mappedCard);
     });
 
+    function deleteTask(event) {
+        console.log(event);
+        card = event.parentNode.parentNode;
+        console.log(card);
+        console.log(toJSON(card));
 
-    /*
-    function deleteTask() {
-        document.getElementById("editCardForm").style.display = "block";
-        deleteSelectedTask();
+        const deleteForm = document.querySelector("#deleteCardForm");
+        console.log(deleteForm);
+
+        deleteForm.style.display = "block";
     }
-
-     */
 
     function closeEditNewTask() {
         document.getElementById("editCardForm").style.display = "none";
@@ -208,7 +211,7 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id, d
     let card = document.createElement("div");
     card.className = "card";
 
-    // Creates the whole card division
+    // Creates the edit and delete division
     let editsection = document.createElement("div");
     editsection.className = "editsection";
 
@@ -273,8 +276,9 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id, d
     killImg.setAttribute("src", "img/icons8-delete.svg");
 
     kill.appendChild(killImg);
-    editsection.appendChild(kill);
     editsection.appendChild(edit);
+    editsection.appendChild(kill);
+
 
     card.appendChild(editsection);
 
