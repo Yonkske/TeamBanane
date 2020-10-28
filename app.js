@@ -1,9 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const session = require('express-session');
 const app = express();
-const MongoClient = require('mongodb').MongoClient;
-const Joi = require("joi");
 const mongoose = require("mongoose");
 
 // Set path to .env
