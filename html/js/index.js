@@ -65,13 +65,13 @@ let state = false;
 function easteregg() {
     if (state === false) {
         state = true;
-        document.getElementById("albrecht").src = "/img/albrecht_easteregg.png";
-        document.getElementById("froeni").src = "/img/froehner_easteregg.png";
-        document.getElementById("tabaluga").src = "/img/tabyrca_easteregg.png";
+        document.getElementById("albrecht").src = "img/albrecht_easteregg.png";
+        document.getElementById("froeni").src = "img/froehner_easteregg.png";
+        document.getElementById("tabaluga").src = "img/tabyrca_easteregg.png";
     } else {
-        document.getElementById("albrecht").src = "/img/albrecht.png";
-        document.getElementById("froeni").src = "/img/froehner.png";
-        document.getElementById("tabaluga").src = "/img/tabyrca.png";
+        document.getElementById("albrecht").src = "img/albrecht.png";
+        document.getElementById("froeni").src = "img/froehner.png";
+        document.getElementById("tabaluga").src = "img/tabyrca.png";
         state = false;
     }
 }
