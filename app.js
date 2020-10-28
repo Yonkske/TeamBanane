@@ -80,7 +80,6 @@ const taskSchema = mongoose.Schema({
     column: String,
     position: Number,
     taskname: String,
-    description: String,
     editorname: String,
     duedate: Date,
     priority: String
@@ -88,7 +87,7 @@ const taskSchema = mongoose.Schema({
 const Task = mongoose.model("Task", taskSchema);
 
 // Get all task cards of the project form the database and send them to the client
-app.get("/project/:projectname", async (req, res) => {
+app.get("/taskcard/:projectname", async (req, res) => {
 
     const cards = await Task.find().where("project").in(req.params.projectname).exec();
     res.status(200).send(cards);
@@ -124,7 +123,6 @@ app.post("/taskcard", async (req, res) => {
         column: null,
         position: null,
         taskname: req.body.taskname,
-        description: req.body.description,
         editorname: req.body.editorname,
         duedate: Date.parse(req.body.duedate),
         priority: req.body.priority
