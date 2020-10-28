@@ -14,7 +14,7 @@ registrationForm.addEventListener("submit", (e) => {
                 "content-type": "application/json",
             },
         }).then((res) => {
-            alert("project succesfully created");
+            alert("project successfully created");
             return res.json()
         }).then(data => {
             if (data.project === "alreadyexists") {
