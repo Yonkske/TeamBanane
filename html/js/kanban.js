@@ -181,11 +181,18 @@
         let card = event.parentNode.parentNode;
         console.log(card);
         console.log(toJSON(card));
+        fetch("/taskcard", {
+            method: "DELETE",
+            body: JSON.stringify(toJSON(card)),
+            headers: {
+                "content-type":"application/json",
+            }
+        }).then(res => res.json()).then(data => {
+            card.remove();
+        })
 
-        const deleteForm = document.querySelector("#deleteCardForm");
-        console.log(deleteForm);
 
-        deleteForm.style.display = "block";
+
     }
 
     function closeEditNewTask() {
