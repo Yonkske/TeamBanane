@@ -346,6 +346,7 @@ function updateTaskCard(card, cardJSON) {
         }
     }).then(res => res.json()).then(data => {
         updateContent(card, data);
+        closeEditNewTask();
     });
 
     console.log("TASKCARD UPDATED");
@@ -360,11 +361,17 @@ function toJSON(card) {
         position: null,
         taskname: card.childNodes[1].childNodes[0].textContent,
         editorname: card.childNodes[1].childNodes[1].textContent,
-        duedate: card.childNodes[4].textContent,
+        duedate: parseDate(card.childNodes[1].childNodes[2].textContent),
         priority: card.childNodes[0].className.substr(7, 6).trim()
     }
 
     return cardJson;
+}
+
+function parseDate(date){
+    let parsedDate = date.substr(6,4)+"-"+date.substr(3, 2)+"-"+date.substr(0, 2);
+
+    return parsedDate;
 }
 
 // Initializing the page and filling it with the given data
