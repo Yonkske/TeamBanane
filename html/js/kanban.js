@@ -72,7 +72,7 @@
             lastChild.parentNode.removeChild(lastChild);
             event.target.appendChild(lastChild);
 
-            updateTaskCard(toJSON(dragged));
+            updateTaskCard(dragged, toJSON(dragged));
         }
 
     }, false);
@@ -126,6 +126,7 @@
         crTask.onsubmit = submitted.bind(crTask);
         console.log(crTask);
     }
+
     /*
     function deleteSelectedTask() {
         let crTask = document.getElementById("newTask");
@@ -164,21 +165,29 @@
 }
 // Functions to edit task-description
 { // Hide
+    let card;
     function openEditNewTask(event) {
-        console.log(event);
-        let card = event.parentNode.parentNode;
+        card = event.parentNode.parentNode;
         console.log(card);
-        console.log(toJSON(card));
+        let cardJson = toJSON(card);
+        console.log(cardJson);
 
-        const editForm = document.querySelector("#editCardForm");
-        console.log(editForm);
-
-        editForm.style.display = "block";
+        document.getElementById("nameChange").value = cardJson.taskname;
+        document.getElementById("editorChange").value = cardJson.editorname;
+        document.getElementById("editCardForm").style.display = "block";
     }
+
+    const editForm = document.querySelector("#editTask");
+
+    editForm.addEventListener("submit", (e) =>  {
+        const values = Object.fromEntries(new FormData(e.target));
+        let mappedCard = cardValueMapping(toJSON(card), values);
+        updateTaskCard(card, mappedCard);
+    });
 
     function deleteTask(event) {
         console.log(event);
-        let card = event.parentNode.parentNode;
+        card = event.parentNode.parentNode;
         console.log(card);
         console.log(toJSON(card));
 
@@ -194,7 +203,7 @@
 }
 
 // Function to generate the dom element for a task card
-function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
+function generateTaskCard(column, priority, taskname, editorname, duedate, id, description) {
     // Get the column to which to append the taskcard
     const targetColumn = document.querySelector("#" + column);
 
@@ -289,8 +298,38 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
     targetColumn.appendChild(card);
 }
 
+// Update card function
+function updateContent(card, content) {
+    console.log("updating content of the task");
+    card.childNodes[1].childNodes[0].textContent = content.taskname;
+    card.childNodes[1].childNodes[1].textContent = content.editorname;
+    card.childNodes[1].childNodes[2].textContent = content.duedate.substr(8, 2) + "."
+        + content.duedate.substr(5, 2) + "." + content.duedate.substr(0, 4);
+    card.childNodes[4].textContent = content.duedate;
+    if (content.priority === "low") {
+        card.childNodes[0].className = "handle low";
+    }
+    if (content.priority === "medium") {
+        card.childNodes[0].className = "handle medium";
+    }
+    if (content.priority === "high") {
+        card.childNodes[0].className = "handle high";
+    }
+}
+
+// Function to map the values from the form into the card json
+function cardValueMapping(cardJson, formInput) {
+    console.log("now mapping")
+    cardJson.taskname = formInput.taskname;
+    cardJson.editorname = formInput.editorname;
+    cardJson.duedate = formInput.duedate;
+    cardJson.priority = formInput.priority;
+
+    return cardJson;
+}
+
 // Update function
-function updateTaskCard(cardJSON) {
+function updateTaskCard(card, cardJSON) {
     fetch("/taskcard", {
         method: "PUT",
         body: JSON.stringify(cardJSON),
@@ -298,24 +337,23 @@ function updateTaskCard(cardJSON) {
             "content-type": "application/json",
         }
     }).then(res => res.json()).then(data => {
-
+        updateContent(card, data);
     });
 
     console.log("TASKCARD UPDATED");
 }
 
 // Generete JSON from taskcard(html)
-function toJSON(draggedElement) {
-    console.log(draggedElement);
+function toJSON(card) {
     let cardJson = {
-        _id: draggedElement.childNodes[3].textContent,
+        _id: card.childNodes[3].textContent,
         project: document.querySelector('#project-name').textContent,
-        column: draggedElement.parentNode.id,
+        column: card.parentNode.id,
         position: null,
-        taskname: draggedElement.childNodes[1].childNodes[0].textContent,
-        editorname: draggedElement.childNodes[1].childNodes[1].textContent,
-        duedate: draggedElement.childNodes[4].textContent,
-        priority: draggedElement.childNodes[0].className.substr(7, 6).trim()
+        taskname: card.childNodes[1].childNodes[0].textContent,
+        editorname: card.childNodes[1].childNodes[1].textContent,
+        duedate: card.childNodes[4].textContent,
+        priority: card.childNodes[0].className.substr(7, 6).trim()
     }
 
     return cardJson;
@@ -327,10 +365,10 @@ function initialize() {
     const projectName = document.querySelector("#project-name").textContent;
 
 
-    fetch("/project/" + projectName).then(res => res.json()).then(data => {
+    fetch("/taskcard/" + projectName).then(res => res.json()).then(data => {
         // TODO: replace "to-do" with card.column
         data.forEach(card => {
-            if(card.column === null){
+            if (card.column === null) {
                 generateTaskCard("to-do", card.priority, card.taskname, card.editorname, card.duedate, card._id);
             } else {
                 generateTaskCard(card.column, card.priority, card.taskname, card.editorname, card.duedate, card._id);
