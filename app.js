@@ -80,7 +80,6 @@ const taskSchema = mongoose.Schema({
     column: String,
     position: Number,
     taskname: String,
-    description: String,
     editorname: String,
     duedate: Date,
     priority: String
@@ -118,7 +117,6 @@ app.post("/taskcard", async (req, res) => {
         column: null,
         position: null,
         taskname: req.body.taskname,
-        description: req.body.description,
         editorname: req.body.editorname,
         duedate: Date.parse(req.body.duedate),
         priority: req.body.priority
