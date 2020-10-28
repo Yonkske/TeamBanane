@@ -368,8 +368,8 @@ function toJSON(card) {
     return cardJson;
 }
 
-function parseDate(date){
-    let parsedDate = date.substr(6,4)+"-"+date.substr(3, 2)+"-"+date.substr(0, 2);
+function parseDate(date) {
+    let parsedDate = date.substr(6, 4) + "-" + date.substr(3, 2) + "-" + date.substr(0, 2);
 
     return parsedDate;
 }
@@ -377,20 +377,29 @@ function parseDate(date){
 // Initializing the page and filling it with the given data
 function initialize() {
 
+
     const projectName = new URLSearchParams(window.location.search).get("projectname");
     document.querySelector("#project-name").textContent = projectName;
 
+    if (sessionStorage.getItem('project') === projectName) {
 
-    fetch("/taskcard/" + projectName).then(res => res.json()).then(data => {
-        // TODO: replace "to-do" with card.column
-        data.forEach(card => {
-            if (card.column === null) {
-                generateTaskCard("to-do", card.priority, card.taskname, card.editorname, card.duedate, card._id);
-            } else {
-                generateTaskCard(card.column, card.priority, card.taskname, card.editorname, card.duedate, card._id);
-            }
+        fetch("/taskcard/" + projectName).then(res => res.json()).then(data => {
+            // TODO: replace "to-do" with card.column
+            data.forEach(card => {
+                if (card.column === null) {
+                    generateTaskCard("to-do", card.priority, card.taskname, card.editorname, card.duedate, card._id);
+                } else {
+                    generateTaskCard(card.column, card.priority, card.taskname, card.editorname, card.duedate, card._id);
+                }
+            });
         });
-    });
-
+    } else {
+    location.href = "index.html";
+    }
     console.log("PROJECT PAGE INITIALIZED!");
+}
+
+
+function logout() {
+    sessionStorage.clear();
 }

@@ -48,6 +48,7 @@ loginForm.addEventListener("submit", (e) => {
                     if (data.project === "notfound") {
                         alert("user not found");
                     } else if (data.password === values.password) {
+                        sessionStorage.setItem('project', values.projectname.toString());
                         location.href = "kanban.html?projectname=" + data.project;
                     } else {
                         alert("passwords do not match");
