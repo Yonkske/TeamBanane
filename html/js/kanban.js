@@ -267,7 +267,7 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id) {
     let kill = document.createElement("button");
     let editKill = document.createElement("div");
     kill.className = "kill";
-    kill.setAttribute("onclick", "openEditNewTask(this)");
+    kill.setAttribute("onclick", "deleteTask(this)");
 
     // Create the image for the kill button
     let killImg = document.createElement("img");

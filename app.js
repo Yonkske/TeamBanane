@@ -111,7 +111,8 @@ app.put("/taskcard", async (req, res) => {
 
 // Delete a taskcard from the database
 app.delete("/taskcard", async (req, res)=>{
-    await Task.findOneAndDelete({_id:req.body._id})
+    await Task.findOneAndDelete({_id:req.body._id});
+    res.status(200).send();
 })
 
 
