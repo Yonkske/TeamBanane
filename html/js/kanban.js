@@ -175,36 +175,14 @@
         document.getElementById("nameChange").value = cardJson.taskname;
         document.getElementById("editorChange").value = cardJson.editorname;
         document.getElementById("editCardForm").style.display = "block";
-
-        const editForm = document.querySelector("#editTask");
-
-        /*
-        console.log("creating onsubmit");
-        editForm.onsubmit = () => {
-            console.log("editform submitted");
-            const values = {
-                taskname: document.getElementById("nameChange").value,
-                editorname: document.getElementById("editorChange"),
-                duedate: document.getElementById("dateChange").value,
-                priority: document.getElementById("prioChange").value
-            }
-            updateTaskCard(card, cardValueMapping(cardJson, values))
-        };
-
-         */
     }
 
     const editForm = document.querySelector("#editTask");
 
     editForm.addEventListener("submit", (e) =>  {
-        console.log("editform submitted");
-        const values = {
-            taskname: document.getElementById("nameChange").value,
-            editorname: document.getElementById("editorChange"),
-            duedate: document.getElementById("dateChange").value,
-            priority: document.getElementById("prioChange").value
-        }
-        updateTaskCard(card, cardValueMapping(toJSON(card), values))
+        const values = Object.fromEntries(new FormData(e.target));
+        let mappedCard = cardValueMapping(toJSON(card), values);
+        updateTaskCard(card, mappedCard);
     });
 
 
@@ -348,7 +326,6 @@ function cardValueMapping(cardJson, formInput) {
 
 // Update function
 function updateTaskCard(card, cardJSON) {
-    console.log("about to fetch (put)")
     fetch("/taskcard", {
         method: "PUT",
         body: JSON.stringify(cardJSON),

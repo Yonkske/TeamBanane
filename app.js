@@ -95,7 +95,6 @@ app.get("/project/:projectname", async (req, res) => {
 
 // Update an already existing task card
 app.put("/taskcard", async (req, res) => {
-    console.log("now we are here");
     let updatedTask = await Task.findOneAndUpdate({_id: req.body._id}, {
         project: req.body.project,
         column: req.body.column,
