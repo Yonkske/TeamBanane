@@ -361,7 +361,7 @@ function initialize() {
     const projectName = document.querySelector("#project-name").textContent;
 
 
-    fetch("/project/" + projectName).then(res => res.json()).then(data => {
+    fetch("/taskcard/" + projectName).then(res => res.json()).then(data => {
         // TODO: replace "to-do" with card.column
         data.forEach(card => {
             if (card.column === null) {
