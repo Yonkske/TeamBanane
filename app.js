@@ -115,7 +115,6 @@ app.delete("/taskcard", async (req, res)=>{
 
 // Add a new taskcard to the database
 app.post("/taskcard", async (req, res) => {
-    // TODO: find out how to get the collumn, the project and the position of the taskcard
     const newTaskcard = new Task({
         project: req.body.project,
         column: null,
@@ -128,7 +127,6 @@ app.post("/taskcard", async (req, res) => {
 
     newTaskcard.save(function (err) {
         if(err) {
-            console.log(err);
             res.status(500).send();
         } else {
             res.status(200).send(JSON.stringify(newTaskcard));
