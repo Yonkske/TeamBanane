@@ -48,6 +48,7 @@ loginForm.addEventListener("submit", (e) => {
                     if (data.project === "notfound") {
                         alert("user not found");
                     } else if (data.password === values.password) {
+                        sessionStorage.setItem('project', values.projectname.toString());
                         location.href = "kanban.html?projectname=" + data.project;
                     } else {
                         alert("passwords do not match");
@@ -68,9 +69,9 @@ function easteregg() {
         document.getElementById("froeni").src = "/img/froehner_easteregg.png";
         document.getElementById("tabaluga").src = "/img/tabyrca_easteregg.png";
     } else {
-        document.getElementById("albrecht").src = "/img/albrecht.PNG";
-        document.getElementById("froeni").src = "/img/froehner.PNG";
-        document.getElementById("tabaluga").src = "/img/tabyrca.PNG";
+        document.getElementById("albrecht").src = "/img/albrecht.png";
+        document.getElementById("froeni").src = "/img/froehner.png";
+        document.getElementById("tabaluga").src = "/img/tabyrca.png";
         state = false;
     }
 }
