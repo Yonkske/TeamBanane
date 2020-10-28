@@ -188,7 +188,9 @@
                 "content-type":"application/json",
             }
         }).then(res => res.json()).then(data => {
-            card.remove();
+            card.innerHTML = '';
+            card.parentNode.removeChild(card);
+            //card.style.display = "none";
         })
 
 
