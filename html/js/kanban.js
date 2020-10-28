@@ -190,11 +190,20 @@
         card = event.parentNode.parentNode;
         console.log(card);
         console.log(toJSON(card));
+        fetch("/taskcard", {
+            method: "DELETE",
+            body: JSON.stringify(toJSON(card)),
+            headers: {
+                "content-type":"application/json",
+            }
+        }).then(res => res.json()).then(data => {
+            card.innerHTML = '';
+            card.parentNode.removeChild(card);
+            //card.style.display = "none";
+        })
 
-        const deleteForm = document.querySelector("#deleteCardForm");
-        console.log(deleteForm);
 
-        deleteForm.style.display = "block";
+
     }
 
     function closeEditNewTask() {
@@ -269,7 +278,7 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id, d
     let kill = document.createElement("button");
     let editKill = document.createElement("div");
     kill.className = "kill";
-    kill.setAttribute("onclick", "openEditNewTask(this)");
+    kill.setAttribute("onclick", "deleteTask(this)");
 
     // Create the image for the kill button
     let killImg = document.createElement("img");
