@@ -1,12 +1,12 @@
-
 /* General ****************/
 
 #kanban {
-    background: url(../../img/banana.jpg);
+    background: url(../img/banana.jpg);
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
 }
+
 /* Dropdown menu **********/
 
 .dropdown {
@@ -20,22 +20,22 @@
     border-radius: 5px;
     background-color: rgb(160, 114, 83);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 12px 16px;
     z-index: 1;
 }
-  
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
 /* Kanban Columns *********/
 
-.column{
+.column {
     font-family: 'Roboto Slab', serif;
     background-color: rgb(59, 24, 0);
     float: left;
-    width: 250px;
+    width: 31%;
     height: 90%;
     margin: 1%;
     margin-top: 4%;
@@ -50,11 +50,11 @@
     margin: 0;
 }
 
-.new-column{  
+.new-column {
     background-color: rgb(160, 114, 83);
 }
 
-.new-column-input{
+.new-column-input {
     font-size: 25px;
     text-align: center;
     color: whitesmoke;
@@ -83,7 +83,7 @@
 }
 
 .task-card:hover {
-    transition-duration: 0,1s;
+    transition-duration: 0.1s;
     border: #be6e2b solid;
 }
 
@@ -121,11 +121,11 @@
     border-radius: 5px;
     background-color: rgba(59, 24, 0, 0.815);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 12px 16px;
     z-index: 1;
 }
-                    
+
 .task-card:hover .task-description {
     display: block;
 }
@@ -134,7 +134,7 @@
     display: block;
 }
 
-.desc-text{
+.desc-text {
     background-color: inherit;
     margin: 0%;
     resize: none;
@@ -169,10 +169,22 @@
     min-height: inherit;
     min-width: 15px;
     width: auto;
-    background-color: green;
-    border-bottom-left-radius : 4px;
-    border-top-left-radius : 4px;
+    background-color: #999999;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
     float: left;
+}
+
+.handle .low {
+    background-color: green;
+}
+
+.handle .medium {
+    background-color: orange;
+}
+
+.handle .high {
+    background-color: red;
 }
 
 .content {
@@ -202,6 +214,16 @@
     border: none;
     color: inherit;
 }
+.kill {
+    vertical-align: center;
+    background: transparent;
+    border: none;
+    color: inherit;
+}
+
+.invisible {
+    display: none;
+}
 
 /* New-Card Overhaul ***********/
 
@@ -209,12 +231,23 @@
     order: -1;
 }
 
-.new-card button {
+.column h2 {
+    order: -2;
+}
+
+.new-card button img {
     margin-top: 2%;
-    background: url("../../img/plus.svg");
-    background-color:  #be6e2b;
+    background: url("../img/plus.svg");
+    background-color: rgb(59, 24, 0);
     height: 15px;
     width: 15px;
+    border-radius: 15px;
+    border: none;
+}
+
+.new-card button{
+    margin-top: 2%;
+    background-color: #be6e2b;
     border-radius: 15px;
     border: none;
 }
@@ -231,7 +264,8 @@ label {
     border-radius: 10px;
     background-color: darkgray;
     position: fixed;
-    top: 20%; left: 20%;
+    top: 20%;
+    left: 20%;
     display: none;
 }
 
@@ -246,40 +280,42 @@ label {
     margin: 2%;
 }
 
-#nameInput {
+.nameInput {
     margin: 2%;
     width: 96%;
 }
 
-#descInput {
+.descInput {
     margin: 2%;
     width: 96%;
     height: 50px;
 }
 
-#editorInput {
+.editorInput {
     margin: 2%;
     width: 96%;
 }
 
-#dateInput {
+.dateInput {
     margin: 2%;
     width: 96%;
 }
 
-#prioInput {
+.prioInput {
     margin: 2%;
     width: 96%;
     text-align: center;
 }
 
-#low {
+.low {
     background-color: green;
 }
-#medium {
+
+.medium {
     background-color: orange;
 }
-#high {
+
+.high {
     background-color: red;
 }
 
