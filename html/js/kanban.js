@@ -181,6 +181,7 @@
     const editForm = document.querySelector("#editTask");
 
     editForm.addEventListener("submit", (e) => {
+        e.preventDefault();
         const values = Object.fromEntries(new FormData(e.target));
         let mappedCard = cardValueMapping(toJSON(card), values);
         updateTaskCard(card, mappedCard);
@@ -369,7 +370,8 @@ function toJSON(card) {
 // Initializing the page and filling it with the given data
 function initialize() {
 
-    const projectName = document.querySelector("#project-name").textContent;
+    const projectName = new URLSearchParams(window.location.search).get("projectname");
+    document.querySelector("#project-name").textContent = projectName;
 
 
     fetch("/taskcard/" + projectName).then(res => res.json()).then(data => {

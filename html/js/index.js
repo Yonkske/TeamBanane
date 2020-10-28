@@ -45,10 +45,10 @@ loginForm.addEventListener("submit", (e) => {
         fetch("/register/" + values.projectname)
             .then(function (res) {
                 res.json().then(data => {
-                    if (data.user === "notfound") {
+                    if (data.project === "notfound") {
                         alert("user not found");
                     } else if (data.password === values.password) {
-                        location.href = "kanban.html";
+                        location.href = "kanban.html?projectname=" + data.project;
                     } else {
                         alert("passwords do not match");
                     }
