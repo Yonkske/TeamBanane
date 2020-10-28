@@ -196,10 +196,9 @@
             headers: {
                 "content-type":"application/json",
             }
-        }).then(res => res.json()).then(data => {
+        }).then(res => {
             card.innerHTML = '';
             card.parentNode.removeChild(card);
-            //card.style.display = "none";
         })
 
 
