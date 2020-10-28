@@ -61,36 +61,6 @@ loginForm.addEventListener("submit", (e) => {
 });
 contactForm.addEventListener("submit", (e) =>{
     e.preventDefault();
-
     window.location.href = "mailto:ion.tabyrca@gmx.de?subject=test&body=testmessage%20goes%20here";
 
 });
-
-/*
-contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    window.location.href = "mailto:user@example.com?subject=Subject&body=message%20goes%20here";
-
-    const values = Object.fromEntries(new FormData(e.target));
-
-    const regex = new RegExp("^\\s+$");
-
-    if (!regex.test(values.projectname)) {
-
-        fetch("/register/" + values.projectname)
-            .then(function (res) {
-                res.json().then(data => {
-                    if (data.user === "notfound") {
-                        alert("user not found");
-                    }
-                    else if (data.password === values.password) {
-                        location.href = "kanban.html";
-                    } else {
-                        alert("passwords do not match");
-                    }
-                });
-            })
-    } else {
-        alert("Abhandlung für den Fall, dass nichts eingegeben wurde. Avoids 404. ");
-    }
-*/
