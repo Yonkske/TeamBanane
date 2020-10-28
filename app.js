@@ -27,21 +27,19 @@ mongoose.set('useFindAndModify', false);
 
 // Login functionality+
 // Defining the schema for a user
-const userSchema = mongoose.Schema({
-    username: String,
-    password: String,
-    projects: {type: Array, "default": []}
+const projectSchema = mongoose.Schema({
+    project: String,
+    password: String
 });
-const User = mongoose.model("User", userSchema);
+const Project = mongoose.model("Project", projectSchema);
 
 
 app.post("/register", async (req, res) => {
 
-    if (await User.findOne({username: req.body.projectname}).exec() === null) {
-        const newUser = new User({
-            username: req.body.projectname,
-            password: req.body.password,
-            projects: ['first']
+    if (await Project.findOne({project: req.body.projectname}).exec() === null) {
+        const newUser = new Project({
+            project: req.body.projectname,
+            password: req.body.password
         });
 
         newUser.save(function (err) {
@@ -62,12 +60,12 @@ app.post("/register", async (req, res) => {
 app.get("/register/:projectname", async (req, res) => {
 
 
-    const foundUser = await User.findOne({username: req.params.projectname}).exec();
+    const foundUser = await Project.findOne({project: req.params.projectname}).exec();
 
     if (foundUser != null) {
         res.send(JSON.stringify(foundUser));
     } else {
-        res.send({user: "notfound"});
+        res.send({project: "notfound"});
     }
 })
 
@@ -87,7 +85,7 @@ const taskSchema = mongoose.Schema({
 const Task = mongoose.model("Task", taskSchema);
 
 // Get all task cards of the project form the database and send them to the client
-app.get("/project/:projectname", async (req, res) => {
+app.get("/taskcard/:projectname", async (req, res) => {
 
     const cards = await Task.find().where("project").in(req.params.projectname).exec();
     res.status(200).send(cards);
@@ -106,6 +104,12 @@ app.put("/taskcard", async (req, res) => {
     }, {new: true});
 
     res.status(200).send(JSON.stringify(updatedTask))
+})
+
+// Delete a taskcard from the database
+app.delete("/taskcard", async (req, res)=>{
+    await Task.findOneAndDelete({_id:req.body._id});
+    res.status(200).send();
 })
 
 

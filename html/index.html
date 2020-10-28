@@ -51,7 +51,7 @@
         <input class="input_text" name="projectname" type="text" tabindex="1" placeholder="projectname"><br>
         <input class="input_text" name="password" type="password" tabindex="2" placeholder="password"><br>
         <input class="button" type="submit" tabindex="3"><br>
-        <a href=kanban.html>
+        <a href=#registration>
             <img src="img/pfeil.png" alt="Pfeil">
         </a>
     </form>
@@ -69,7 +69,7 @@
         <input class="input_text" type="password" name="password" tabindex="5" placeholder="password"><br>
         <input class="input_text" type="password" name="passwordrepeat" tabindex="6" placeholder="repeat password"><br>
         <input class="button" type="submit" tabindex="7"><br>
-        <a href="#login">
+        <a href="#team">
             <img src="img/pfeil.png" alt="Pfeil">
         </a>
     </form>
@@ -82,13 +82,13 @@
     <h3>Our Team</h3>
     <hr>
     <ul>
-        <li><a href=https://github.com/Yonkske><img src="img/albrecht.PNG" alt="Albrecht"></a></li>
+        <li><a href=https://github.com/Yonkske><img src="img/albrecht.PNG" id="albrecht" alt="Albrecht"></a></li>
         <br><br>
         <h2>Jan Albrecht, W&W Informatik GmbH</h2><br><br>
-        <li><a href=https://github.com/doenisf><img src="img/froehner.PNG" alt="Froehner"></a></li>
+        <li><a href=https://github.com/doenisf><img src="img/froehner.PNG" id="froeni" alt="Froehner"></a></li>
         <br><br>
         <h2>Simon Fröhner, Finanz Informatik Solutions Plus GmbH</h2><br><br>
-        <li><a href=https://github.com/tabascoel><img src="img/tabyrca.PNG" alt="Tabyrca"></a></li>
+        <li><a href=https://github.com/tabascoel><img src="img/tabyrca.PNG" id="tabaluga" alt="Tabyrca"></a></li>
         <h2>Ion Tabyrca, Sopra Banking Software GmbH</h2><br><br>
     </ul>
     <hr>
@@ -101,10 +101,9 @@
     <h3>Contact</h3>
     <hr>
 
-    <form>
-        <input class="input_text" type="email" tabindex="8" placeholder="e-mail"><br>
-        <input class="input_text" type="text" tabindex="9" placeholder="subject"><br>
-        <textarea class="input_text" tabindex="10" placeholder="message"></textarea><br>
+    <form id = "contactForm">
+        <input class="input_text" type="text" tabindex="9" id="subject" placeholder="subject"><br>
+        <textarea class="input_text" tabindex="10" id="message" placeholder="message"></textarea><br>
         <input class="button" type="submit" tabindex="11">
     </form>
 </section>
@@ -112,9 +111,12 @@
 <!-- FOOTER --------------------------------->
 
 <footer>
+
     <p>
+        <img src="img/favicon.ico" id="easteregg" width="15" height="15" onclick="easteregg()">
         &copy; 2020 DHBW Stuttgart
     </p>
+
 </footer>
 <!----- Adding the necessary scripts ----->
 <script src="js/index.js"></script>
