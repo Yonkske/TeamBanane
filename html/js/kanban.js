@@ -401,5 +401,4 @@ function initialize() {
 
 
 function logout() {
-    sessionStorage.clear();
-}
+    sessionStorage.clear();}

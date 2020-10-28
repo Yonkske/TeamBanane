@@ -69,9 +69,9 @@ function easteregg() {
         document.getElementById("froeni").src = "/img/froehner_easteregg.png";
         document.getElementById("tabaluga").src = "/img/tabyrca_easteregg.png";
     } else {
-        document.getElementById("albrecht").src = "/img/albrecht.PNG";
-        document.getElementById("froeni").src = "/img/froehner.PNG";
-        document.getElementById("tabaluga").src = "/img/tabyrca.PNG";
+        document.getElementById("albrecht").src = "/img/albrecht.png";
+        document.getElementById("froeni").src = "/img/froehner.png";
+        document.getElementById("tabaluga").src = "/img/tabyrca.png";
         state = false;
     }
 }
