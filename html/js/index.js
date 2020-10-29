@@ -14,11 +14,13 @@ registrationForm.addEventListener("submit", (e) => {
                 "content-type": "application/json",
             },
         }).then((res) => {
-            alert("project successfully created");
             return res.json()
         }).then(data => {
             if (data.project === "alreadyexists") {
                 alert("project already exists!");
+            }
+            else {
+                alert("project successfully created");
             }
 
         });
