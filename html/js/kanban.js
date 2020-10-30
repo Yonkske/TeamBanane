@@ -124,21 +124,10 @@
     function createNewTask() {
         let crTask = document.getElementById("newTask");
         crTask.onsubmit = submitted.bind(crTask);
-        console.log(crTask);
     }
-
-    /*
-    function deleteSelectedTask() {
-        let crTask = document.getElementById("newTask");
-        crTask.onsubmit = submitted.bind(crTask);
-        console.log(crTask);
-    }
-
-     */
 
     function submitted(event) {
         event.preventDefault();
-        console.log("submitted");
         closeCreateNewTask();
     }
 
@@ -155,12 +144,8 @@
                 "content-type": "application/json",
             }
         }).then(res => res.json()).then(data => {
-            console.log(data);
-
             generateTaskCard("to-do", data.priority, data.taskname, data.editorname, data.duedate, data._id)
         });
-
-        console.log("FORM SUBMITTED", values);
     })
 }
 // Functions to edit task-description
@@ -169,12 +154,11 @@
 
     function openEditNewTask(event) {
         card = event.parentNode.parentNode;
-        console.log(card);
         let cardJson = toJSON(card);
-        console.log(cardJson);
-
         document.getElementById("nameChange").value = cardJson.taskname;
         document.getElementById("editorChange").value = cardJson.editorname;
+        document.getElementById("dateChange").value = cardJson.duedate;
+        document.getElementById("prioChange").value = cardJson.priority;
         document.getElementById("editCardForm").style.display = "block";
     }
 
@@ -188,10 +172,7 @@
     });
 
     function deleteTask(event) {
-        console.log(event);
         card = event.parentNode.parentNode;
-        console.log(card);
-        console.log(toJSON(card));
         fetch("/taskcard", {
             method: "DELETE",
             body: JSON.stringify(toJSON(card)),
@@ -309,7 +290,6 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id, d
 
 // Update card function
 function updateContent(card, content) {
-    console.log("updating content of the task");
     card.childNodes[1].childNodes[0].textContent = content.taskname;
     card.childNodes[1].childNodes[1].textContent = content.editorname;
     card.childNodes[1].childNodes[2].textContent = content.duedate.substr(8, 2) + "."
@@ -328,7 +308,6 @@ function updateContent(card, content) {
 
 // Function to map the values from the form into the card json
 function cardValueMapping(cardJson, formInput) {
-    console.log("now mapping")
     cardJson.taskname = formInput.taskname;
     cardJson.editorname = formInput.editorname;
     cardJson.duedate = formInput.duedate;
@@ -350,7 +329,6 @@ function updateTaskCard(card, cardJSON) {
         closeEditNewTask();
     });
 
-    console.log("TASKCARD UPDATED");
 }
 
 // Generete JSON from taskcard(html)
@@ -371,7 +349,6 @@ function toJSON(card) {
 
 function parseDate(date) {
     let parsedDate = date.substr(6, 4) + "-" + date.substr(3, 2) + "-" + date.substr(0, 2);
-
     return parsedDate;
 }
 
@@ -397,7 +374,6 @@ function initialize() {
     } else {
     location.href = "index.html";
     }
-    console.log("PROJECT PAGE INITIALIZED!");
 }
 
 

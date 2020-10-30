@@ -14,11 +14,13 @@ registrationForm.addEventListener("submit", (e) => {
                 "content-type": "application/json",
             },
         }).then((res) => {
-
             return res.json()
         }).then(data => {
             if (data.project === "alreadyexists") {
                 alert("project already exists!");
+            }
+            else {
+                alert("project successfully created");
             }
 
         });
@@ -46,7 +48,7 @@ loginForm.addEventListener("submit", (e) => {
             .then(function (res) {
                 res.json().then(data => {
                     if (data.project === "notfound") {
-                        alert("user not found");
+                        alert("project not found");
                     } else if (data.password === values.password) {
                         sessionStorage.setItem('project', values.projectname.toString());
                         location.href = "kanban.html?projectname=" + data.project;
@@ -55,8 +57,6 @@ loginForm.addEventListener("submit", (e) => {
                     }
                 });
             })
-    } else {
-        alert("Abhandlung für den Fall, dass nichts eingegeben wurde. Avoids 404. ");
     }
 
 });
@@ -65,13 +65,13 @@ let state = false;
 function easteregg() {
     if (state === false) {
         state = true;
-        document.getElementById("albrecht").src = "/img/albrecht_easteregg.png";
-        document.getElementById("froeni").src = "/img/froehner_easteregg.png";
-        document.getElementById("tabaluga").src = "/img/tabyrca_easteregg.png";
+        document.getElementById("albrecht").src = "img/albrecht_easteregg.png";
+        document.getElementById("froeni").src = "img/froehner_easteregg.png";
+        document.getElementById("tabaluga").src = "img/tabyrca_easteregg.png";
     } else {
-        document.getElementById("albrecht").src = "/img/albrecht.png";
-        document.getElementById("froeni").src = "/img/froehner.png";
-        document.getElementById("tabaluga").src = "/img/tabyrca.png";
+        document.getElementById("albrecht").src = "img/albrecht.png";
+        document.getElementById("froeni").src = "img/froehner.png";
+        document.getElementById("tabaluga").src = "img/tabyrca.png";
         state = false;
     }
 }
