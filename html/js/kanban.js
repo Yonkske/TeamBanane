@@ -157,6 +157,8 @@
         let cardJson = toJSON(card);
         document.getElementById("nameChange").value = cardJson.taskname;
         document.getElementById("editorChange").value = cardJson.editorname;
+        document.getElementById("dateChange").value = cardJson.duedate;
+        document.getElementById("prioChange").value = cardJson.priority;
         document.getElementById("editCardForm").style.display = "block";
     }
 
