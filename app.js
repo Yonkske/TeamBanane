@@ -104,8 +104,8 @@ app.put("/taskcard", async (req, res) => {
 })
 
 // Delete a taskcard from the database
-app.delete("/taskcard", async (req, res)=>{
-    await Task.findOneAndDelete({_id:req.body._id});
+app.delete("/taskcard", async (req, res) => {
+    await Task.findOneAndDelete({_id: req.body._id});
     res.status(200).send();
 })
 
@@ -123,7 +123,7 @@ app.post("/taskcard", async (req, res) => {
     })
 
     newTaskcard.save(function (err) {
-        if(err) {
+        if (err) {
             res.status(500).send();
         } else {
             res.status(200).send(JSON.stringify(newTaskcard));
