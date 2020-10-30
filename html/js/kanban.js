@@ -216,6 +216,7 @@ function generateTaskCard(column, priority, taskname, editorname, duedate, id, d
         handle.className = "handle high";
     }
     handle.setAttribute("draggable", "true");
+    handle.textContent = "Grab here to drag!"
     card.appendChild(handle);
 
     // Create the content division
